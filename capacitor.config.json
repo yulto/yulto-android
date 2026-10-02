@@ -1,0 +1,17 @@
+{
+  "appId": "com.yultocare.app",
+  "appName": "YULTO CARE",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "CapacitorSQLite": {
+      "androidDatabaseLocation": "default",
+      "iosDatabaseLocation": "Library/CapacitorDatabase"
+    }
+  }
+}
