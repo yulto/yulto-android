@@ -1,6 +1,6 @@
 {
   "appId": "com.yultocare.app",
-  "appName": "YULTO CARE",
+  "appName": "OPSIN MEDICALS",
   "webDir": "www",
   "server": {
     "androidScheme": "https"
@@ -12,6 +12,15 @@
     "CapacitorSQLite": {
       "androidDatabaseLocation": "default",
       "iosDatabaseLocation": "Library/CapacitorDatabase"
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon",
+      "iconColor": "#2563eb"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#2563eb",
+      "showSpinner": false
     }
   }
 }
