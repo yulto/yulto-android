@@ -1,12 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════
-   YULTO CARE — native layer v6.0
+   OPSIN MEDICALS — native layer v7.0
    ═══════════════════════════════════════════════════════════════════ */
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { TextToSpeech } from '@capacitor-community/text-to-speech';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
 const DB_NAME = 'yulto';
-const DB_VER = 6;
+const DB_VER = 7;
 const sqlite = new SQLiteConnection(CapacitorSQLite);
 let db = null;
 
@@ -14,10 +17,7 @@ const SCHEMA = `
 CREATE TABLE IF NOT EXISTS patients (
   id TEXT PRIMARY KEY, name TEXT NOT NULL, mrn TEXT, dob TEXT, sex TEXT,
   diabetes INTEGER DEFAULT 0, pvd INTEGER DEFAULT 0, smoker INTEGER DEFAULT 0,
-  hba1c REAL, notes TEXT,
-  abi REAL, tbi REAL, dpPulse TEXT, ptPulse TEXT,
-  albumin REAL, bmi REAL, weightLoss INTEGER DEFAULT 0,
-  photoConsent INTEGER DEFAULT 0,
+  hba1c REAL, notes TEXT, photoConsent INTEGER DEFAULT 0,
   createdAt INTEGER, updatedAt INTEGER
 );
 CREATE TABLE IF NOT EXISTS wounds (
@@ -66,7 +66,7 @@ async function openDB() {
     await db.open();
     await db.execute(SCHEMA);
     await migrate();
-  } catch (e) { console.error('[yulto] SQLite open failed:', e); throw e; }
+  } catch (e) { console.error('[opsin] SQLite open failed:', e); throw e; }
 }
 
 async function migrate() {
@@ -99,13 +99,6 @@ async function migrate() {
     'ALTER TABLE assessments ADD COLUMN offloading TEXT',
     'ALTER TABLE assessments ADD COLUMN debridement TEXT',
     'ALTER TABLE images ADD COLUMN annotation TEXT',
-    'ALTER TABLE patients ADD COLUMN abi REAL',
-    'ALTER TABLE patients ADD COLUMN tbi REAL',
-    'ALTER TABLE patients ADD COLUMN dpPulse TEXT',
-    'ALTER TABLE patients ADD COLUMN ptPulse TEXT',
-    'ALTER TABLE patients ADD COLUMN albumin REAL',
-    'ALTER TABLE patients ADD COLUMN bmi REAL',
-    'ALTER TABLE patients ADD COLUMN weightLoss INTEGER DEFAULT 0',
     'ALTER TABLE patients ADD COLUMN photoConsent INTEGER DEFAULT 0',
   ];
   for (const sql of alters) { try { await db.execute(sql); } catch (_) {} }
@@ -175,7 +168,7 @@ async function clearAll() {
 
 async function buildPayload() {
   return {
-    app: 'YULTO CARE', version: '6.0-native',
+    app: 'OPSIN MEDICALS', version: '7.0-native',
     exportedAt: new Date().toISOString(),
     patients: await all('patients'),
     wounds: await all('wounds'),
@@ -189,10 +182,10 @@ async function exportBackup(reason) {
   const payload = await buildPayload();
   const json = JSON.stringify(payload);
   const stamp = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
-  const filename = `yulto-backup-${stamp}.json`;
+  const filename = `opsin-backup-${stamp}.json`;
   try {
     await Filesystem.writeFile({
-      path: `YULTO_CARE_BACKUPS/${filename}`,
+      path: `OPSIN_MEDICALS_BACKUPS/${filename}`,
       data: json, directory: Directory.Documents,
       encoding: Encoding.UTF8, recursive: true,
     });
@@ -209,14 +202,105 @@ async function exportBackup(reason) {
 async function shareBackup(reason) {
   const r = await exportBackup(reason);
   await Share.share({
-    title: 'YULTO CARE backup',
+    title: 'OPSIN MEDICALS backup',
     text: `Backup file: ${r.filename}. Email it to yourself or save to Drive.`,
     url: r.uri, dialogTitle: 'Send backup to…',
   });
   return r;
 }
+
+async function saveAndShareFile(base64Data, filename, mimeType) {
+  const result = await Filesystem.writeFile({
+    path: filename,
+    data: base64Data,
+    directory: Directory.Cache,
+    encoding: Encoding.UTF8,
+  });
+  await Share.share({
+    title: filename,
+    url: result.uri,
+    dialogTitle: 'Save or send file',
+  });
+  return result;
+}
+
+async function saveAndShareBinary(base64Data, filename, mimeType) {
+  const result = await Filesystem.writeFile({
+    path: filename,
+    data: base64Data,
+    directory: Directory.Cache,
+  });
+  await Share.share({
+    title: filename,
+    url: result.uri,
+    dialogTitle: 'Save or send file',
+  });
+  return result;
+}
+
 async function shareText({ title, text }) {
   await Share.share({ title, text, dialogTitle: title });
+}
+
+async function speak(text) {
+  try {
+    await TextToSpeech.speak({
+      text: text,
+      lang: 'en-US',
+      rate: 0.95,
+      pitch: 1.0,
+      volume: 1.0,
+    });
+  } catch (e) {
+    console.warn('TTS failed', e);
+  }
+}
+async function stopSpeaking() {
+  try { await TextToSpeech.stop(); } catch (e) {}
+}
+
+async function startListening() {
+  try {
+    const perm = await SpeechRecognition.requestPermissions();
+    if (perm.speechRecognition !== 'granted') return { error: 'permission denied' };
+    const result = await SpeechRecognition.start({
+      language: 'en-US',
+      maxResults: 1,
+      prompt: 'Speak now…',
+      partialResults: false,
+      popup: false,
+    });
+    if (result?.matches?.length) return { text: result.matches[0] };
+    return { text: '' };
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+async function stopListening() {
+  try { await SpeechRecognition.stop(); } catch (e) {}
+}
+
+async function scheduleBackupReminder() {
+  try {
+    await LocalNotifications.requestPermissions();
+    await LocalNotifications.cancel({ notifications: [{ id: 1001 }] });
+    const threeDays = Date.now() + 3*24*60*60*1000;
+    await LocalNotifications.schedule({
+      notifications: [{
+        id: 1001,
+        title: 'OPSIN MEDICALS',
+        body: 'Time to back up your patient data. Tap to open.',
+        schedule: { at: new Date(threeDays), allowWhileIdle: true },
+        smallIcon: 'ic_stat_icon',
+        channelId: 'opsin-backup',
+      }],
+    });
+    await LocalNotifications.createChannel({
+      id: 'opsin-backup',
+      name: 'Backup reminders',
+      importance: 3,
+    });
+  } catch (e) { console.warn('notification schedule failed', e); }
 }
 
 async function importFromFileJson(jsonText) {
@@ -233,6 +317,9 @@ async function importFromFileJson(jsonText) {
 window.yultoDB = {
   openDB, put, get, all, del, clearAll,
   exportBackup, shareBackup, shareText, importFromFileJson,
+  saveAndShareFile, saveAndShareBinary,
+  speak, stopSpeaking, startListening, stopListening,
+  scheduleBackupReminder,
 };
 window.YULTO_READY = true;
-console.log('[yulto] native layer v6.0 ready');
+console.log('[opsin] native layer v7.0 ready');
