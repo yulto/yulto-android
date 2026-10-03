@@ -1,13 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════
-   YULTO CARE — native layer
-   Real SQLite database + real backup files, on the phone.
+   YULTO CARE — native layer v6.0
    ═══════════════════════════════════════════════════════════════════ */
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
 
 const DB_NAME = 'yulto';
-const DB_VER = 1;
+const DB_VER = 6;
 const sqlite = new SQLiteConnection(CapacitorSQLite);
 let db = null;
 
@@ -15,11 +14,17 @@ const SCHEMA = `
 CREATE TABLE IF NOT EXISTS patients (
   id TEXT PRIMARY KEY, name TEXT NOT NULL, mrn TEXT, dob TEXT, sex TEXT,
   diabetes INTEGER DEFAULT 0, pvd INTEGER DEFAULT 0, smoker INTEGER DEFAULT 0,
-  hba1c REAL, notes TEXT, createdAt INTEGER, updatedAt INTEGER
+  hba1c REAL, notes TEXT,
+  abi REAL, tbi REAL, dpPulse TEXT, ptPulse TEXT,
+  albumin REAL, bmi REAL, weightLoss INTEGER DEFAULT 0,
+  photoConsent INTEGER DEFAULT 0,
+  createdAt INTEGER, updatedAt INTEGER
 );
 CREATE TABLE IF NOT EXISTS wounds (
   id TEXT PRIMARY KEY, patientId TEXT NOT NULL, label TEXT NOT NULL,
   type TEXT, location TEXT, status TEXT DEFAULT 'active', notes TEXT,
+  stage TEXT, template TEXT, nextVisit INTEGER,
+  baselineArea REAL, onsetDate INTEGER,
   createdAt INTEGER, updatedAt INTEGER
 );
 CREATE TABLE IF NOT EXISTS assessments (
@@ -28,11 +33,17 @@ CREATE TABLE IF NOT EXISTS assessments (
   depthCm REAL, volumeCm3 REAL, tissue TEXT, infection REAL,
   healingIndex REAL, expectedDays INTEGER, optimisticDays INTEGER,
   pessimisticDays INTEGER, ratePerWeek REAL, calibrated INTEGER,
-  createdAt INTEGER
+  pain INTEGER, exudate TEXT, odor TEXT, periwound TEXT,
+  underminingCm REAL, tunnelingCm REAL, tags TEXT, clinician TEXT,
+  imageQuality REAL, circularity REAL, elongation REAL, edgeIrregularity REAL,
+  wbpScore INTEGER, designScore INTEGER, biofilm INTEGER,
+  cultureResult TEXT, cultureOrganism TEXT,
+  dressings TEXT, compression TEXT, offloading TEXT, debridement TEXT,
+  notes TEXT, createdAt INTEGER
 );
 CREATE TABLE IF NOT EXISTS images (
   id TEXT PRIMARY KEY, woundId TEXT NOT NULL, dataUrl TEXT,
-  width INTEGER, height INTEGER, createdAt INTEGER
+  width INTEGER, height INTEGER, annotation TEXT, createdAt INTEGER
 );
 CREATE TABLE IF NOT EXISTS settings (k TEXT PRIMARY KEY, v TEXT);
 CREATE TABLE IF NOT EXISTS audit (
@@ -54,11 +65,50 @@ async function openDB() {
       : await sqlite.createConnection(DB_NAME, false, 'no-encryption', DB_VER, false);
     await db.open();
     await db.execute(SCHEMA);
-    console.log('[yulto] SQLite opened:', DB_NAME);
-  } catch (e) {
-    console.error('[yulto] SQLite open failed:', e);
-    throw e;
-  }
+    await migrate();
+  } catch (e) { console.error('[yulto] SQLite open failed:', e); throw e; }
+}
+
+async function migrate() {
+  const alters = [
+    'ALTER TABLE wounds ADD COLUMN stage TEXT',
+    'ALTER TABLE wounds ADD COLUMN template TEXT',
+    'ALTER TABLE wounds ADD COLUMN nextVisit INTEGER',
+    'ALTER TABLE wounds ADD COLUMN baselineArea REAL',
+    'ALTER TABLE wounds ADD COLUMN onsetDate INTEGER',
+    'ALTER TABLE assessments ADD COLUMN pain INTEGER',
+    'ALTER TABLE assessments ADD COLUMN exudate TEXT',
+    'ALTER TABLE assessments ADD COLUMN odor TEXT',
+    'ALTER TABLE assessments ADD COLUMN periwound TEXT',
+    'ALTER TABLE assessments ADD COLUMN underminingCm REAL',
+    'ALTER TABLE assessments ADD COLUMN tunnelingCm REAL',
+    'ALTER TABLE assessments ADD COLUMN tags TEXT',
+    'ALTER TABLE assessments ADD COLUMN clinician TEXT',
+    'ALTER TABLE assessments ADD COLUMN imageQuality REAL',
+    'ALTER TABLE assessments ADD COLUMN circularity REAL',
+    'ALTER TABLE assessments ADD COLUMN elongation REAL',
+    'ALTER TABLE assessments ADD COLUMN edgeIrregularity REAL',
+    'ALTER TABLE assessments ADD COLUMN notes TEXT',
+    'ALTER TABLE assessments ADD COLUMN wbpScore INTEGER',
+    'ALTER TABLE assessments ADD COLUMN designScore INTEGER',
+    'ALTER TABLE assessments ADD COLUMN biofilm INTEGER',
+    'ALTER TABLE assessments ADD COLUMN cultureResult TEXT',
+    'ALTER TABLE assessments ADD COLUMN cultureOrganism TEXT',
+    'ALTER TABLE assessments ADD COLUMN dressings TEXT',
+    'ALTER TABLE assessments ADD COLUMN compression TEXT',
+    'ALTER TABLE assessments ADD COLUMN offloading TEXT',
+    'ALTER TABLE assessments ADD COLUMN debridement TEXT',
+    'ALTER TABLE images ADD COLUMN annotation TEXT',
+    'ALTER TABLE patients ADD COLUMN abi REAL',
+    'ALTER TABLE patients ADD COLUMN tbi REAL',
+    'ALTER TABLE patients ADD COLUMN dpPulse TEXT',
+    'ALTER TABLE patients ADD COLUMN ptPulse TEXT',
+    'ALTER TABLE patients ADD COLUMN albumin REAL',
+    'ALTER TABLE patients ADD COLUMN bmi REAL',
+    'ALTER TABLE patients ADD COLUMN weightLoss INTEGER DEFAULT 0',
+    'ALTER TABLE patients ADD COLUMN photoConsent INTEGER DEFAULT 0',
+  ];
+  for (const sql of alters) { try { await db.execute(sql); } catch (_) {} }
 }
 
 function ser(value) {
@@ -73,7 +123,6 @@ function ser(value) {
   }
   return out;
 }
-
 function deser(row) {
   const out = {};
   for (const k in row) {
@@ -87,48 +136,37 @@ function deser(row) {
 
 async function put(store, value) {
   if (store === 'settings') {
-    const k = value.k;
     const v = typeof value.v === 'object' ? JSON.stringify(value.v) : String(value.v);
-    await db.run('INSERT OR REPLACE INTO settings (k, v) VALUES (?, ?)', [k, v]);
+    await db.run('INSERT OR REPLACE INTO settings (k, v) VALUES (?, ?)', [value.k, v]);
     return value;
   }
   const row = ser(value);
   const cols = Object.keys(row);
   const ph = cols.map(() => '?').join(',');
-  await db.run(
-    `INSERT OR REPLACE INTO ${store} (${cols.join(',')}) VALUES (${ph})`,
-    cols.map(c => row[c])
-  );
+  await db.run(`INSERT OR REPLACE INTO ${store} (${cols.join(',')}) VALUES (${ph})`, cols.map(c => row[c]));
   return value;
 }
-
 async function get(store, key) {
   if (store === 'settings') {
     const r = await db.query('SELECT k, v FROM settings WHERE k = ?', [key]);
     const row = r.values?.[0];
     if (!row) return null;
-    let v = row.v;
-    try { v = JSON.parse(v); } catch {}
+    let v = row.v; try { v = JSON.parse(v); } catch {}
     return { k: row.k, v };
   }
   const r = await db.query(`SELECT * FROM ${store} WHERE id = ?`, [key]);
   const row = r.values?.[0];
   return row ? deser(row) : null;
 }
-
 async function all(store, idx, key) {
-  let sql, params = [];
-  if (key && idx) { sql = `SELECT * FROM ${store} WHERE ${idx} = ?`; params = [key]; }
-  else sql = `SELECT * FROM ${store}`;
-  const r = await db.query(sql, params);
+  const sql = key && idx ? `SELECT * FROM ${store} WHERE ${idx} = ?` : `SELECT * FROM ${store}`;
+  const r = await db.query(sql, key ? [key] : []);
   return (r.values || []).map(deser);
 }
-
 async function del(store, key) {
   if (store === 'settings') await db.run('DELETE FROM settings WHERE k = ?', [key]);
   else await db.run(`DELETE FROM ${store} WHERE id = ?`, [key]);
 }
-
 async function clearAll() {
   for (const t of ['patients','wounds','assessments','images','audit','backups']) {
     await db.execute(`DELETE FROM ${t}`);
@@ -137,8 +175,7 @@ async function clearAll() {
 
 async function buildPayload() {
   return {
-    app: 'YULTO CARE',
-    version: '4.0-native',
+    app: 'YULTO CARE', version: '6.0-native',
     exportedAt: new Date().toISOString(),
     patients: await all('patients'),
     wounds: await all('wounds'),
@@ -153,24 +190,17 @@ async function exportBackup(reason) {
   const json = JSON.stringify(payload);
   const stamp = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
   const filename = `yulto-backup-${stamp}.json`;
-
   try {
     await Filesystem.writeFile({
       path: `YULTO_CARE_BACKUPS/${filename}`,
-      data: json,
-      directory: Directory.Documents,
-      encoding: Encoding.UTF8,
-      recursive: true,
+      data: json, directory: Directory.Documents,
+      encoding: Encoding.UTF8, recursive: true,
     });
   } catch (e) { console.warn('persist copy failed', e); }
-
   const cache = await Filesystem.writeFile({
-    path: filename,
-    data: json,
-    directory: Directory.Cache,
-    encoding: Encoding.UTF8,
+    path: filename, data: json,
+    directory: Directory.Cache, encoding: Encoding.UTF8,
   });
-
   await put('backups', { id: stamp, filename, ts: Date.now(), reason: reason || 'manual', size: json.length });
   await put('settings', { k: 'last_backup_ts', v: Date.now() });
   return { filename, uri: cache.uri };
@@ -181,10 +211,12 @@ async function shareBackup(reason) {
   await Share.share({
     title: 'YULTO CARE backup',
     text: `Backup file: ${r.filename}. Email it to yourself or save to Drive.`,
-    url: r.uri,
-    dialogTitle: 'Send backup to…',
+    url: r.uri, dialogTitle: 'Send backup to…',
   });
   return r;
+}
+async function shareText({ title, text }) {
+  await Share.share({ title, text, dialogTitle: title });
 }
 
 async function importFromFileJson(jsonText) {
@@ -200,7 +232,7 @@ async function importFromFileJson(jsonText) {
 
 window.yultoDB = {
   openDB, put, get, all, del, clearAll,
-  exportBackup, shareBackup, importFromFileJson,
+  exportBackup, shareBackup, shareText, importFromFileJson,
 };
 window.YULTO_READY = true;
-console.log('[yulto] native layer ready');
+console.log('[yulto] native layer v6.0 ready');
