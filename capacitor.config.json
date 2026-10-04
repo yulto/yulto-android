@@ -1,9 +1,10 @@
 {
   "appId": "com.yultocare.app",
-  "appName": "OPSIN MEDICALS",
+  "appName": "YULTO CARE",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "allowNavigation": ["yulto-ai.kathikabalasooriya.workers.dev"]
   },
   "android": {
     "allowMixedContent": true
@@ -13,14 +14,12 @@
       "androidDatabaseLocation": "default",
       "iosDatabaseLocation": "Library/CapacitorDatabase"
     },
+    "CapacitorHttp": {
+      "enabled": true
+    },
     "LocalNotifications": {
       "smallIcon": "ic_stat_icon",
       "iconColor": "#2563eb"
-    },
-    "SplashScreen": {
-      "launchShowDuration": 2000,
-      "backgroundColor": "#2563eb",
-      "showSpinner": false
     }
   }
 }
