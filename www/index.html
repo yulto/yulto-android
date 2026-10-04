@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#2563eb">
-<title>OPSIN MEDICALS</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🩺%3C/text%3E%3C/svg%3E">
+<title>YULTO CARE</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Crect x='4' y='4' width='16' height='16' rx='8' transform='rotate(45 12 12)'/%3E%3Ccircle cx='9' cy='9' r='.8' fill='%232563eb'/%3E%3Ccircle cx='12' cy='12' r='.8' fill='%232563eb'/%3E%3Ccircle cx='15' cy='15' r='.8' fill='%232563eb'/%3E%3C/svg%3E">
 <style>
-:root{--brand:#2563eb;--brand-2:#1d4ed8;--brand-3:#06b6d4;--ok:#10b981;--ok-2:#059669;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--warn:#f59e0b;--danger:#dc2626;--radius:14px;--shadow:0 1px 3px rgba(0,0,0,.08)}
+:root{--brand:#2563eb;--brand-2:#1d4ed8;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--ok:#10b981;--warn:#f59e0b;--danger:#dc2626;--radius:14px;--shadow:0 1px 3px rgba(0,0,0,.08)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;overscroll-behavior-y:none}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -17,7 +17,9 @@ input:focus,textarea:focus,select:focus{border-color:var(--brand);box-shadow:0 0
 textarea{resize:vertical;min-height:70px}.hidden{display:none!important}
 #app{display:flex;flex-direction:column;min-height:100dvh;max-width:720px;margin:0 auto;background:var(--bg)}
 header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800;font-size:17px;color:var(--text);letter-spacing:-.3px}.logo .brand{color:var(--brand)}.logo .sub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.3px;display:block;margin-top:-2px}
+.logo{font-weight:800;font-size:18px;color:var(--brand);letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
+.logo svg{width:26px;height:26px}
+.logo span{color:var(--text)}
 main{flex:1;padding:16px;padding-bottom:calc(90px + env(safe-area-inset-bottom))}
 nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom));max-width:720px;margin:0 auto}
 nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;font-size:11px;font-weight:600;color:var(--muted);transition:.15s}
@@ -26,14 +28,16 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .card.link{transition:.15s;cursor:pointer}.card.link:active{transform:scale(.99);border-color:var(--brand)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 18px;background:var(--brand);color:#fff;border-radius:10px;font-weight:600;font-size:15px;transition:.15s;width:100%}
 .btn:active{transform:scale(.98);background:var(--brand-2)}.btn.sec{background:#fff;color:var(--text);border:1px solid var(--line)}
-.btn.ok{background:var(--ok)}.btn.danger{background:var(--danger)}.btn.sm{padding:8px 12px;font-size:13px;width:auto}
+.btn.ok{background:var(--ok)}.btn.warn{background:var(--warn)}.btn.danger{background:var(--danger)}.btn.sm{padding:8px 12px;font-size:13px;width:auto}
 .btn.yulto{background:linear-gradient(135deg,#2563eb,#06b6d4)}
 .row{display:flex;gap:8px;align-items:center}.row.between{justify-content:space-between}.row.wrap{flex-wrap:wrap}
 .muted{color:var(--muted);font-size:13px}.title{font-size:20px;font-weight:700;margin:0 0 4px}.sub{font-size:13px;color:var(--muted);margin:0 0 14px}
 .label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 4px}
 .empty{text-align:center;padding:40px 20px;color:var(--muted)}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stat{background:#f8fafc;padding:10px;border-radius:10px}.stat .l{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px}.stat .v{font-size:17px;font-weight:700;margin-top:2px}
+.stat{background:#fff;padding:12px;border-radius:12px;border:1px solid var(--line)}
+.stat .l{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.stat .v{font-size:22px;font-weight:700;margin-top:4px}
 .tbar{display:flex;height:14px;border-radius:999px;overflow:hidden;margin-top:6px;background:#f1f5f9}
 .tlegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:11px;color:var(--muted)}
 .tlegend span{display:flex;align-items:center;gap:4px}.tdot{width:8px;height:8px;border-radius:50%}
@@ -50,13 +54,12 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(-8px)}
 #login{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#eff6ff,#dbeafe)}
 #login .box{background:#fff;border-radius:22px;padding:32px 24px;width:100%;max-width:380px;box-shadow:0 12px 40px rgba(37,99,235,.15)}
-#login h1{font-size:24px;margin:0 0 6px;color:var(--brand);text-align:center;letter-spacing:-.5px}
-#login .brand-sub{text-align:center;font-size:11px;color:var(--muted);margin:-4px 0 16px;font-weight:600;letter-spacing:.4px}
+#login h1{font-size:26px;margin:0 0 6px;color:var(--brand);text-align:center;letter-spacing:-.5px}
+#login h1 span{color:var(--text)}
 #login p{text-align:center;color:var(--muted);margin:0 0 22px;font-size:14px}
 .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#f1f5f9;color:var(--muted)}
 .badge.active{background:#dbeafe;color:var(--brand-2)}.badge.healed{background:#dcfce7;color:#059669}
 .badge.infected{background:#fee2e2;color:#dc2626}.badge.stalled{background:#fef3c7;color:#d97706}
-.progress{height:6px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-top:8px}.progress > div{height:100%;background:var(--brand);transition:.3s}
 .alert-flag{padding:10px 12px;border-radius:10px;font-size:13px;font-weight:600;margin-bottom:10px;text-align:center}
 .alert-flag.improving{background:#dcfce7;color:#166534;border:1px solid #86efac}
 .alert-flag.stalled{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
@@ -66,19 +69,9 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .heal-badge .big{font-size:32px;font-weight:800;color:var(--brand-2);line-height:1}
 .heal-badge .unit{font-size:14px;color:var(--brand-2);font-weight:600}
 .heal-badge .rng{font-size:12px;color:var(--muted);margin-top:2px}
-.hero{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;border-radius:16px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.1)}
-.hero h2{margin:0 0 4px;font-size:22px;font-weight:800;letter-spacing:-.5px}
-.hero p{margin:0;font-size:13px;opacity:.92}
-.hero-actions{display:flex;gap:8px;margin-top:14px;position:relative;z-index:2}
-.hero-actions button{flex:1;background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px;border-radius:10px;font-size:13px;font-weight:600;backdrop-filter:blur(8px)}
-.hero-actions button:active{background:rgba(255,255,255,.35)}
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.quick-tile{padding:14px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:8px;transition:.15s;box-shadow:var(--shadow)}
-.quick-tile:active{transform:scale(.98)}
-.quick-tile .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.quick-tile .ttl{font-size:14px;font-weight:700;color:var(--text)}
-.quick-tile .dsc{font-size:11px;color:var(--muted);margin-top:-4px}
+.ai-card{padding:12px;border-radius:12px;margin-bottom:14px;border:1px solid var(--line);background:#fff}
+.ai-card .lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.ai-card .st{font-size:13px;color:var(--text);font-weight:600;margin-top:2px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .chip{padding:5px 10px;border-radius:999px;background:#f1f5f9;font-size:12px;font-weight:600;border:1px solid var(--line)}
 .pie-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:12px}
@@ -98,19 +91,15 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .progress-ring .pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .progress-ring .pct .n{font-size:26px;font-weight:800;color:var(--brand-2);line-height:1}
 .progress-ring .pct .l{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-.speak-btn{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;background:#eff6ff;border:1px solid #bfdbfe;color:var(--brand-2);display:flex;align-items:center;justify-content:center;font-size:16px}
-.speak-btn:active{background:#dbeafe}
-.zone-bar{display:flex;height:20px;border-radius:6px;overflow:hidden;margin-top:6px;background:#f1f5f9}
-.zone-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px}
 .heatmap-tabs{display:flex;gap:6px;margin-bottom:10px}
 .heatmap-tabs button{flex:1;padding:8px;border-radius:8px;background:#f1f5f9;font-size:12px;font-weight:600;border:1px solid var(--line)}
 .heatmap-tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-.overflow-menu{position:absolute;top:48px;right:16px;background:#fff;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.15);border:1px solid var(--line);padding:6px;z-index:40;min-width:200px;animation:fadeIn .15s ease}
+.overflow-menu{position:absolute;top:48px;right:16px;background:#fff;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.15);border:1px solid var(--line);padding:6px;z-index:40;min-width:210px;animation:fadeIn .15s ease}
 .overflow-menu button{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--text)}
 .overflow-menu button:active{background:#f1f5f9}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
-/* ═══════════ SPLASH SCREEN ═══════════ */
+/* splash */
 #splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#e0f2fe 0%,#dcfce7 45%,#dbeafe 100%);background-size:300% 300%;animation:gradientShift 8s ease infinite;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s ease;overflow:hidden}
 #splash.hide{opacity:0;visibility:hidden;pointer-events:none}
 @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -126,10 +115,9 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .splash-logo{margin-top:24px;font-size:26px;font-weight:800;letter-spacing:1px;color:var(--text);opacity:0;animation:fadeUp 1s ease-out .5s forwards;z-index:2}
 .splash-logo .brand{color:var(--brand)}
 .splash-sub{margin-top:4px;font-size:11px;letter-spacing:2.5px;color:var(--muted);font-weight:600;text-transform:uppercase;opacity:0;animation:fadeUp 1s ease-out .9s forwards;z-index:2}
-.splash-tag{margin-top:22px;font-size:12px;color:var(--muted);font-style:italic;opacity:0;animation:fadeUp 1s ease-out 1.4s forwards;z-index:2}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* ═══════════ YULTO AI ═══════════ */
+/* Yulto */
 #yulto{position:fixed;inset:0;z-index:60;background:#f1f5f9;display:flex;flex-direction:column}
 #yulto .yheader{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;padding:calc(env(safe-area-inset-top) + 12px) 16px 14px;display:flex;align-items:center;gap:10px}
 #yulto .yheader .avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px}
@@ -141,7 +129,6 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .ymsg{max-width:85%;padding:12px 14px;border-radius:16px;font-size:14px;line-height:1.5;word-wrap:break-word;white-space:pre-wrap}
 .ymsg.user{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:4px}
 .ymsg.ai{align-self:flex-start;background:#fff;color:var(--text);border:1px solid var(--line);border-bottom-left-radius:4px}
-.ymsg.thinking{align-self:flex-start;background:#fff;color:var(--muted);border:1px solid var(--line);border-bottom-left-radius:4px;font-style:italic}
 .ymsg img{max-width:100%;border-radius:8px;margin-top:6px}
 .yinputbar{padding:12px 12px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);display:flex;gap:8px;align-items:flex-end}
 .yinputbar textarea{flex:1;padding:10px 12px;min-height:44px;max-height:120px;font-size:15px;resize:none;border-radius:22px;border:1px solid var(--line)}
@@ -156,31 +143,32 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 .ychips button{flex-shrink:0;padding:6px 12px;border-radius:999px;background:#eff6ff;color:var(--brand-2);font-size:12px;font-weight:600;border:1px solid #bfdbfe;white-space:nowrap}
 .ychips button:active{background:#dbeafe}
 
-@media print{nav,header,.btn,.speak-btn{display:none!important}}
+.audit-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+.audit-row .action{font-weight:600}
+.audit-row .when{color:var(--muted);font-size:11px}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ SPLASH ═══════════ -->
 <div id="splash">
   <div class="splash-pulse d1"></div>
   <div class="splash-pulse d2"></div>
   <div class="splash-pulse d3"></div>
   <div class="splash-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="4" y="4" width="16" height="16" rx="8" transform="rotate(45 12 12)"/>
+      <circle cx="9" cy="9" r="1" fill="currentColor"/>
+      <circle cx="12" cy="12" r="1" fill="currentColor"/>
+      <circle cx="15" cy="15" r="1" fill="currentColor"/>
     </svg>
   </div>
-  <div class="splash-logo">OPSIN <span class="brand">MEDICALS</span></div>
-  <div class="splash-sub">by Yulto Care</div>
-  <div class="splash-tag">Caring for every wound</div>
+  <div class="splash-logo">YULTO <span class="brand">CARE</span></div>
+  <div class="splash-sub">Clinical Wound Platform</div>
 </div>
 
-<!-- ═══════════ LOGIN ═══════════ -->
 <div id="login" class="hidden">
   <div class="box">
-    <h1>OPSIN MEDICALS</h1>
-    <div class="brand-sub">by Yulto Care</div>
+    <h1>YULTO<span>CARE</span></h1>
     <p>Clinician access</p>
     <label class="label">PIN</label>
     <input id="pin" type="password" inputmode="numeric" placeholder="Enter your PIN" autocomplete="off">
@@ -192,29 +180,43 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
   </div>
 </div>
 
-<!-- ═══════════ APP ═══════════ -->
 <div id="app" class="hidden">
   <header>
     <div class="logo">
-      OPSIN <span class="brand">MEDICALS</span>
-      <span class="sub">by Yulto Care</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+        <rect x="4" y="4" width="16" height="16" rx="8" transform="rotate(45 12 12)"/>
+        <circle cx="9" cy="9" r="1" fill="#2563eb"/>
+        <circle cx="12" cy="12" r="1" fill="#2563eb"/>
+        <circle cx="15" cy="15" r="1" fill="#2563eb"/>
+      </svg>
+      YULTO<span>CARE</span>
     </div>
-    <button onclick="go('settings')" style="padding:6px;color:var(--muted)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-    </button>
+    <div class="row" style="gap:4px">
+      <button onclick="openYulto()" style="padding:6px;color:var(--brand)" title="Ask Yulto">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v-2a3 3 0 0 1 3-3h2"/><circle cx="18" cy="8" r="3"/><path d="M18 11v4a5 5 0 0 1-5 5h-2"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/></svg>
+      </button>
+      <button onclick="go('settings')" style="padding:6px;color:var(--muted)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
   </header>
   <main id="view"></main>
   <nav id="nav">
     <button data-tab="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
     <button data-tab="patients" onclick="go('patients')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg><span>Patients</span></button>
+    <button data-tab="capture" onclick="go('capture')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg><span>Capture</span></button>
     <button data-tab="settings" onclick="go('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg><span>Settings</span></button>
   </nav>
 </div>
 
-<!-- ═══════════ YULTO AI ═══════════ -->
 <div id="yulto" class="hidden">
   <div class="yheader">
-    <div class="avatar">🩺</div>
+    <div class="avatar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+        <rect x="4" y="4" width="16" height="16" rx="8" transform="rotate(45 12 12)"/>
+        <circle cx="12" cy="12" r="1" fill="currentColor"/>
+      </svg>
+    </div>
     <div class="yinfo">
       <div class="yname">Yulto</div>
       <div class="ystatus" id="yultoStatus">AI clinical assistant · online</div>
@@ -227,9 +229,9 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
   <div class="ychips" id="yultoChips"></div>
   <div class="yinputbar">
     <button class="yicon mic" id="yultoMic" onclick="toggleYultoMic()" title="Voice input">🎤</button>
-    <textarea id="yultoInput" placeholder="Ask Yulto anything about wound care…" rows="1" oninput="autoGrow(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendYultoMessage()}"></textarea>
-    <button class="yicon cam" onclick="yultoCamera()" title="Analyze wound photo">📷</button>
-    <button class="yicon send" onclick="sendYultoMessage()" title="Send">
+    <textarea id="yultoInput" placeholder="Ask Yulto about wound care…" rows="1" oninput="autoGrow(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendYultoMessage()}"></textarea>
+    <button class="yicon cam" onclick="yultoCamera()" title="Analyze photo">📷</button>
+    <button class="yicon send" onclick="sendYultoMessage()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </div>
@@ -243,22 +245,14 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 <script src="capacitor.js" type="module"></script>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════════
-   OPSIN MEDICALS v7.0 — by Yulto Care
-   AI-powered clinical wound care · Powered by Yulto (Gemini)
-   ═══════════════════════════════════════════════════════════════════ */
-
+/* YULTO CARE v8.0 */
 const YULTO_WORKER_URL = 'https://yulto-ai.kathikabalasooriya.workers.dev/';
 const BACKUP_INTERVAL_MS = 3*24*60*60*1000;
-
 let state = {
   screen:'home', currentPatient:null, currentWound:null,
   woundModel:null, aiReady:false, lastBackupAt:0, native:false,
-  failedAttempts:0,
-  yultoHistory: [],
-  yultoListening: false,
+  failedAttempts:0, yultoHistory: [], yultoListening: false, _clinicianName: '',
 };
-
 const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,8);
 const $ = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
@@ -272,11 +266,11 @@ function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function blobToBase64(b){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(b)})}
 function base64ToBlob(d){const [m,b]=d.split(',');return new Blob([Uint8Array.from(atob(b),c=>c.charCodeAt(0))],{type:m.match(/:(.*?);/)[1]})}
 
-/* ═══════════ DB LAYER ═══════════ */
+/* DB */
 let _browserDb = null;
 async function openBrowserDB(){
   return new Promise((res,rej)=>{
-    const r = indexedDB.open('opsin', 1);
+    const r = indexedDB.open('yultocare', 4);
     r.onupgradeneeded = e => {
       const d = e.target.result;
       if(!d.objectStoreNames.contains('patients')) d.createObjectStore('patients',{keyPath:'id'});
@@ -308,40 +302,33 @@ const DB = {
 };
 async function logAudit(a,d){ try{ await DB.put('audit',{id:uid(),action:a,details:d||{},ts:Date.now()}); }catch(e){} }
 
-/* ═══════════ BACKUP ═══════════ */
+/* Backup */
 async function runBackup(reason){
   try{
-    if(state.native){
-      await window.yultoDB.shareBackup(reason||'manual');
-      const s = await DB.get('settings','last_backup_ts');
-      state.lastBackupAt = s?.v || Date.now();
-      toast('Backup ready — pick where to save',3000);
-    } else {
-      const payload = {
-        app:'OPSIN MEDICALS', version:'7.0-web', exportedAt:new Date().toISOString(),
+    if(state.native){ await window.yultoDB.shareBackup(reason||'manual'); }
+    else {
+      const payload = {app:'YULTO CARE', version:'8.0-web', exportedAt:new Date().toISOString(),
         patients: await DB.all('patients'), wounds: await DB.all('wounds'),
         assessments: await DB.all('assessments'),
         images: await Promise.all((await DB.all('images')).map(async i=>({...i, blob:await blobToBase64(i.blob)}))),
-        audit: await DB.all('audit'),
-      };
+        audit: await DB.all('audit')};
       const blob = new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-      a.download = 'opsin-backup-'+new Date().toISOString().slice(0,10)+'.json';
+      a.download = 'yulto-backup-'+new Date().toISOString().slice(0,10)+'.json';
       document.body.appendChild(a); a.click();
       setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},2000);
       await DB.put('settings',{k:'last_backup_ts',v:Date.now()});
-      state.lastBackupAt = Date.now();
-      toast('Backup downloaded');
     }
+    state.lastBackupAt = Date.now();
+    toast('Backup saved to Documents/YULTO_CARE');
   }catch(e){ toast('Backup failed: '+e.message,3500); }
 }
 async function maybeAutoBackup(){
   const rec = await DB.get('settings','last_backup_ts');
-  const last = rec?.v || 0;
-  state.lastBackupAt = last;
+  state.lastBackupAt = rec?.v || 0;
   const n = (await DB.all('patients')).length;
   if(n === 0) return;
-  if(Date.now() - last >= BACKUP_INTERVAL_MS) setTimeout(()=>runBackup('auto-3day'),1500);
+  if(Date.now() - state.lastBackupAt >= BACKUP_INTERVAL_MS) setTimeout(()=>runBackup('auto-3day'),1500);
 }
 function timeAgo(ts){
   const s = Math.floor((Date.now()-ts)/1000);
@@ -350,31 +337,29 @@ function timeAgo(ts){
   const h = Math.floor(m/60); if(h<24) return h+'h ago';
   return Math.floor(h/24)+'d ago';
 }
-function isOverdue(){
-  const last = state.lastBackupAt || 0;
-  if(!last) return true;
-  return (Date.now() - last) >= BACKUP_INTERVAL_MS;
-}
+function isOverdue(){ if(!state.lastBackupAt) return true; return Date.now()-state.lastBackupAt >= BACKUP_INTERVAL_MS; }
 
-/* ═══════════ VOICE ═══════════ */
+/* Voice */
 async function speak(text){
   if(state.native && window.yultoDB.speak){
-    try { await window.yultoDB.speak(text); return; } catch(e){}
+    try{ const r = await window.yultoDB.speak(text); if(r && r.ok) return; }catch(e){}
   }
   if('speechSynthesis' in window){
-    try {
+    try{
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 0.95; u.pitch = 1; u.volume = 1;
+      const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en'));
+      if(v) u.voice = v;
       speechSynthesis.speak(u);
-    } catch(e){ toast('Voice not available'); }
-  } else {
-    toast('Voice not available');
+      return;
+    }catch(e){}
   }
+  toast('Voice not available on this device');
 }
 function stopSpeaking(){
-  if(state.native && window.yultoDB.stopSpeaking) try { window.yultoDB.stopSpeaking(); } catch(e){}
-  if('speechSynthesis' in window) try { speechSynthesis.cancel(); } catch(e){}
+  if(state.native && window.yultoDB.stopSpeaking) try{ window.yultoDB.stopSpeaking(); }catch(e){}
+  if('speechSynthesis' in window) try{ speechSynthesis.cancel(); }catch(e){}
 }
 async function startListening(onResult){
   if(state.native && window.yultoDB.startListening){
@@ -384,156 +369,98 @@ async function startListening(onResult){
     return;
   }
   if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-    try {
+    try{
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const rec = new SR();
-      rec.continuous = false; rec.interimResults = false; rec.lang = 'en-US';
+      const rec = new SR(); rec.continuous = false; rec.interimResults = false; rec.lang = 'en-US';
       rec.onresult = e => { const t = e.results[0][0].transcript; if(t) onResult(t); };
       rec.onerror = e => toast('Voice error: '+e.error);
       rec.start();
-    } catch(e){ toast('Voice not available'); }
-  } else {
-    toast('Voice input not available on this device');
-  }
+    }catch(e){ toast('Voice not available'); }
+  } else toast('Voice input not available');
 }
 
-/* ═══════════ YULTO AI ═══════════ */
+/* Yulto AI */
 function openYulto(prompt){
   $('#yulto').classList.remove('hidden');
-  $('#yulto').style.display = 'flex';
   if(!state.yultoHistory.length){
-    const clinician = state._clinicianName || 'Doctor';
-    yultoAdd('ai', `Hi ${clinician}. I'm Yulto, your clinical wound care assistant.\n\nI can help you with:\n• Analyzing wound photos\n• Tissue identification & assessment\n• Dressing selection guidance\n• Infection risk interpretation\n• General wound care questions\n\nTap 📷 to analyze a wound photo, or just ask me anything.`);
+    const c = state._clinicianName || 'Doctor';
+    yultoAdd('ai', `Hi ${c}. I'm Yulto, your wound care assistant.\n\nI can analyze wound photos, help with dressing selection, interpret infection risk, and answer clinical questions.\n\nTap 📷 to analyze a photo, or just ask.`);
   }
-  renderYultoFeed();
-  renderYultoChips();
+  renderYultoFeed(); renderYultoChips();
   if(prompt) setTimeout(()=>{ $('#yultoInput').value = prompt; sendYultoMessage(); }, 200);
 }
-function closeYulto(){
-  $('#yulto').classList.add('hidden');
-  stopSpeaking();
-}
-function yultoAdd(role, text, imageDataUrl){
-  state.yultoHistory.push({role, text, image:imageDataUrl||null, ts:Date.now()});
-}
+function closeYulto(){ $('#yulto').classList.add('hidden'); stopSpeaking(); }
+function yultoAdd(role, text, image){ state.yultoHistory.push({role, text, image:image||null, ts:Date.now()}); }
 function renderYultoFeed(){
   const feed = $('#yultoFeed');
-  feed.innerHTML = state.yultoHistory.map(m => {
-    const img = m.image ? `<img src="${m.image}">` : '';
-    return `<div class="ymsg ${m.role}">${esc(m.text)}${img}</div>`;
-  }).join('');
+  feed.innerHTML = state.yultoHistory.map(m => `<div class="ymsg ${m.role}">${esc(m.text)}${m.image?`<img src="${m.image}">`:''}</div>`).join('');
   feed.scrollTop = feed.scrollHeight;
 }
 function renderYultoChips(){
   const chips = [
-    {label:'Analyze wound photo', action:()=>yultoCamera()},
-    {label:'Dressing advice', action:()=>{ $('#yultoInput').value = 'What dressing should I use for a sloughy diabetic foot ulcer?'; sendYultoMessage(); }},
-    {label:'Infection signs', action:()=>{ $('#yultoInput').value = 'What are the warning signs of wound infection I should look for?'; sendYultoMessage(); }},
-    {label:'Healing time', action:()=>{ $('#yultoInput').value = 'How long should a venous leg ulcer take to heal?'; sendYultoMessage(); }},
-    {label:'Offloading', action:()=>{ $('#yultoInput').value = 'What offloading options are recommended for diabetic foot ulcers?'; sendYultoMessage(); }},
+    {l:'Analyze wound photo', a:()=>yultoCamera()},
+    {l:'Dressing advice', a:()=>{ $('#yultoInput').value = 'What dressing should I use for a sloughy diabetic foot ulcer?'; sendYultoMessage(); }},
+    {l:'Infection signs', a:()=>{ $('#yultoInput').value = 'What are the warning signs of wound infection?'; sendYultoMessage(); }},
+    {l:'Offloading', a:()=>{ $('#yultoInput').value = 'What offloading options are recommended for diabetic foot ulcers?'; sendYultoMessage(); }},
   ];
-  $('#yultoChips').innerHTML = chips.map((c,i)=>`<button data-chip="${i}">${c.label}</button>`).join('');
-  $('#yultoChips').querySelectorAll('button').forEach((b,i)=>{ b.onclick = chips[i].action; });
+  $('#yultoChips').innerHTML = chips.map((c,i)=>`<button data-chip="${i}">${c.l}</button>`).join('');
+  $('#yultoChips').querySelectorAll('button').forEach((b,i)=>{ b.onclick = chips[i].a; });
 }
 async function sendYultoMessage(){
-  const input = $('#yultoInput');
-  const text = input.value.trim();
-  if(!text) return;
-  input.value = '';
-  autoGrow(input);
+  const input = $('#yultoInput'); const text = input.value.trim(); if(!text) return;
+  input.value = ''; autoGrow(input);
   await processYulto({ text });
 }
 async function yultoCamera(){
   const input = document.createElement('input');
   input.type = 'file'; input.accept = 'image/*'; input.capture = 'environment';
-  input.style.display = 'none';
-  document.body.appendChild(input);
+  input.style.display = 'none'; document.body.appendChild(input);
   input.onchange = async e => {
-    const file = e.target.files?.[0];
-    document.body.removeChild(input);
+    const file = e.target.files?.[0]; document.body.removeChild(input);
     if(!file) return;
     const dataUrl = await blobToBase64(file);
-    await processYulto({
-      image: dataUrl,
-      text: 'Analyze this wound. Identify tissue types, estimate infection risk, note any concerns, and recommend dressing/management.'
-    });
+    await processYulto({ image: dataUrl, text: 'Analyze this wound. Identify tissue types, infection signs, and recommend dressing/management.' });
   };
   input.click();
 }
 async function processYulto({ text, image }){
-  yultoAdd('user', text, image);
-  renderYultoFeed();
-  yultoAdd('ai', 'Thinking…');
-  renderYultoFeed();
+  yultoAdd('user', text, image); renderYultoFeed();
+  yultoAdd('ai', 'Thinking…'); renderYultoFeed();
   $('#yultoStatus').textContent = 'Analyzing…';
-
-  const systemPrompt = `You are Yulto, a clinical wound care AI assistant for a doctor's clinic. You help with wound assessment, tissue identification, dressing selection, infection risk, and general wound care questions.
-
-Be concise, practical, and clinically focused. Use plain language the doctor can act on. When given a wound photo, comment on:
-- Tissue type (granulation, slough, necrosis, epithelial)
-- Approximate size/appearance
-- Signs of infection (erythema, discharge, warmth)
-- Recommended dressings
-- Red flags to escalate
-
-Format responses with short paragraphs or bullet points. Never be alarmist — be clinically sober.`;
-
-  const fullPrompt = systemPrompt + '\n\nUser question: ' + text;
-
+  const sys = `You are Yulto, a clinical wound care AI assistant for a doctor's clinic. Help with wound assessment, tissue identification, dressing selection, infection risk, and general wound care. Be concise and clinically practical. When given a photo, comment on tissue type, size, infection signs, dressings, and red flags. Use short paragraphs or bullets.`;
   try{
     const res = await fetch(YULTO_WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prompt: fullPrompt,
-        imageBase64: image || null,
-        imageMime: image ? (image.match(/data:(.*?);/)?.[1] || 'image/jpeg') : null,
-      }),
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ prompt: sys + '\n\nUser: ' + text, imageBase64: image || null,
+        imageMime: image ? (image.match(/data:(.*?);/)?.[1] || 'image/jpeg') : null })
     });
     const data = await res.json();
     const reply = data?.text || data?.error || 'No response';
     state.yultoHistory.pop();
-    yultoAdd('ai', reply);
-    renderYultoFeed();
+    yultoAdd('ai', reply); renderYultoFeed();
     $('#yultoStatus').textContent = 'AI clinical assistant · online';
     speak(reply.slice(0, 500));
   } catch(e){
     state.yultoHistory.pop();
-    yultoAdd('ai', 'Sorry, I could not reach the AI service. Check your internet connection.\n\nError: ' + e.message);
-    renderYultoFeed();
-    $('#yultoStatus').textContent = 'Connection error';
+    yultoAdd('ai', 'Could not reach Yulto.\n\nType: ' + e.name + '\nMessage: ' + e.message + '\n\nWorker: ' + YULTO_WORKER_URL);
+    renderYultoFeed(); $('#yultoStatus').textContent = 'Connection error';
   }
 }
-function autoGrow(el){
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
+function autoGrow(el){ el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 120) + 'px'; }
 async function toggleYultoMic(){
   const mic = $('#yultoMic');
-  if(state.yultoListening){
-    state.yultoListening = false;
-    mic.classList.remove('active');
-    return;
-  }
-  state.yultoListening = true;
-  mic.classList.add('active');
+  if(state.yultoListening){ state.yultoListening = false; mic.classList.remove('active'); return; }
+  state.yultoListening = true; mic.classList.add('active');
   $('#yultoStatus').textContent = 'Listening…';
   await startListening((text)=>{
-    state.yultoListening = false;
-    mic.classList.remove('active');
+    state.yultoListening = false; mic.classList.remove('active');
     $('#yultoStatus').textContent = 'AI clinical assistant · online';
-    if(text){
-      $('#yultoInput').value = text;
-      sendYultoMessage();
-    }
+    if(text){ $('#yultoInput').value = text; sendYultoMessage(); }
   });
-  setTimeout(()=>{
-    state.yultoListening = false;
-    mic.classList.remove('active');
-  }, 8000);
+  setTimeout(()=>{ state.yultoListening = false; mic.classList.remove('active'); }, 8000);
 }
 
-/* ═══════════ AI (wound model) ═══════════ */
+/* Wound model */
 async function loadAI(){
   try{
     const el = $('#ai-status'); if(el) el.textContent = 'Loading wound model…';
@@ -545,7 +472,7 @@ async function loadAI(){
   }catch(e){ if(el) el.textContent = 'Color AI active'; }
 }
 
-/* ═══════════ LOGIN ═══════════ */
+/* Login */
 async function doLogin(){
   try{
     const lockUntil = (await DB.get('settings','lock_until'))?.v || 0;
@@ -564,28 +491,20 @@ async function doLogin(){
       $('#app').classList.remove('hidden');
       logAudit('login',{});
       maybeAutoBackup();
-      if(state.native && window.yultoDB.scheduleBackupReminder){
-        setTimeout(()=>window.yultoDB.scheduleBackupReminder(), 2000);
-      }
+      if(state.native && window.yultoDB.scheduleBackupReminder) setTimeout(()=>window.yultoDB.scheduleBackupReminder(), 2000);
       go('home');
     } else {
       state.failedAttempts = (state.failedAttempts || 0) + 1;
       await DB.put('settings',{k:'failed_attempts', v:state.failedAttempts});
-      if(state.failedAttempts >= 5){
-        await DB.put('settings',{k:'lock_until', v:Date.now() + 5*60*1000});
-        toast('Too many attempts. Locked 5 min.', 4000);
-      } else toast('Wrong PIN ('+state.failedAttempts+'/5)');
+      if(state.failedAttempts >= 5){ await DB.put('settings',{k:'lock_until', v:Date.now() + 5*60*1000}); toast('Too many attempts. Locked 5 min.', 4000); }
+      else toast('Wrong PIN ('+state.failedAttempts+'/5)');
       $('#pin').value = '';
     }
-  }catch(e){
-    $('#login').classList.add('hidden');
-    $('#app').classList.remove('hidden');
-    go('home');
-  }
+  }catch(e){ $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); go('home'); }
 }
 $('#pin')?.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
 
-/* ═══════════ ROUTER ═══════════ */
+/* Router */
 function go(screen,opts){
   state.screen = screen;
   if(opts?.patient) state.currentPatient = opts.patient;
@@ -600,8 +519,10 @@ async function render(){
     case 'patients': await renderPatients(v); break;
     case 'patient': await renderPatient(v); break;
     case 'wound': await renderWound(v); break;
+    case 'capture': await renderCapture(v); break;
     case 'settings': await renderSettings(v); break;
     case 'stats': await renderStats(v); break;
+    case 'audit': await renderAudit(v); break;
     case 'scores': await renderScores(v); break;
     case 'timeline': await renderTimeline(v); break;
     case 'compare': await renderCompare(v); break;
@@ -611,7 +532,7 @@ async function render(){
   }
 }
 
-/* ═══════════ HOME ═══════════ */
+/* Home — v3.1 style */
 async function renderHome(v){
   const patients = await DB.all('patients');
   const wounds = await DB.all('wounds');
@@ -619,65 +540,42 @@ async function renderHome(v){
   const assessments = await DB.all('assessments');
   const active = wounds.filter(w=>w.status === 'active').length;
   const clinician = state._clinicianName || '';
-  const greeting = clinician ? `Hi Dr. ${esc(clinician)}` : 'Hi Doctor';
-  const hour = new Date().getHours();
-  const timeGreet = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
-
-  const overdue = [];
-  for(const w of wounds){
-    if(w.status === 'healed') continue;
-    const ass = (await DB.all('assessments','woundId',w.id)).sort((a,b)=>b.createdAt-a.createdAt);
-    if(!ass.length) continue;
-    const daysSince = (Date.now() - ass[0].createdAt)/(24*60*60*1000);
-    if(daysSince > 14) overdue.push({w, days:Math.floor(daysSince)});
-  }
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+  const who = clinician ? `, Dr. ${esc(clinician)}` : ', Doctor';
 
   v.innerHTML = `
-    <div class="hero">
-      <h2>${greeting}</h2>
-      <p>${timeGreet} · ${patients.length} patient${patients.length===1?'':'s'} · ${active} active wound${active===1?'':'s'}</p>
-      <div class="hero-actions">
-        <button onclick="openYulto()">🩺 Ask Yulto</button>
-        <button onclick="openNewPatient()">+ New Patient</button>
-      </div>
-    </div>
+    <h1 class="title">${greet}${who}</h1>
+    <p class="sub">Your clinic at a glance</p>
 
     ${isOverdue() ? `
       <div class="card" style="background:#fef3c7;border-color:#fde68a">
         <div class="row between">
           <div><b style="color:#92400e">Backup overdue</b><div class="muted" style="font-size:12px;color:#92400e">Last: ${state.lastBackupAt ? timeAgo(state.lastBackupAt) : 'never'}</div></div>
-          <button class="btn warn sm" onclick="runBackup('manual-home').then(()=>render())">Backup now</button>
+          <button class="btn warn sm" onclick="runBackup('manual-home').then(()=>render())">Backup</button>
         </div>
       </div>` : ''}
 
-    ${overdue.length ? `<div class="alert-flag stalled">⚠ ${overdue.length} wound(s) need a check-up (14+ days)</div>` : ''}
-
-    <div class="quick-grid">
-      <div class="quick-tile" onclick="go('patients')">
-        <div class="icon" style="background:#dbeafe;color:#1d4ed8">👥</div>
-        <div class="ttl">Patients</div>
-        <div class="dsc">${patients.length} total</div>
-      </div>
-      <div class="quick-tile" onclick="openNewPatient()">
-        <div class="icon" style="background:#dcfce7;color:#059669">➕</div>
-        <div class="ttl">New patient</div>
-        <div class="dsc">Register & assess</div>
-      </div>
-      <div class="quick-tile" onclick="openYulto()">
-        <div class="icon" style="background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff">🩺</div>
-        <div class="ttl">Yulto AI</div>
-        <div class="dsc">Ask, analyze, learn</div>
-      </div>
-      <div class="quick-tile" onclick="go('stats')">
-        <div class="icon" style="background:#fef3c7;color:#d97706">📊</div>
-        <div class="ttl">Statistics</div>
-        <div class="dsc">Clinic overview</div>
-      </div>
-    </div>
-
-    <div class="stats" style="margin-bottom:16px">
+    <div class="stats" style="margin-bottom:14px">
+      <div class="stat"><div class="l">Patients</div><div class="v">${patients.length}</div></div>
+      <div class="stat"><div class="l">Active wounds</div><div class="v">${active}</div></div>
       <div class="stat"><div class="l">Photos</div><div class="v">${images.length}</div></div>
       <div class="stat"><div class="l">Assessments</div><div class="v">${assessments.length}</div></div>
+    </div>
+
+    <div class="row" style="gap:8px;margin-bottom:14px">
+      <button class="btn" onclick="openNewPatient()">+ New Patient</button>
+      <button class="btn sec" onclick="go('patients')">All Patients</button>
+    </div>
+
+    <div class="ai-card">
+      <div class="row between">
+        <div>
+          <div class="lbl">AI engine</div>
+          <div class="st">${state.aiReady ? 'Wound model ready' : 'Color-based fallback'}</div>
+        </div>
+        <div style="font-weight:700;color:${state.aiReady?'var(--ok)':'var(--warn)'}">${state.aiReady ? 'Ready' : 'Loading'}</div>
+      </div>
     </div>
 
     ${assessments.length ? `
@@ -694,67 +592,25 @@ async function renderHome(v){
       }))).join('')}` : ''}`;
 }
 
-/* ═══════════ STATS ═══════════ */
-async function renderStats(v){
-  const patients = await DB.all('patients');
-  const wounds = await DB.all('wounds');
-  const assessments = await DB.all('assessments');
-  const byType = {};
-  for(const w of wounds){ byType[w.type || 'other'] = (byType[w.type || 'other'] || 0) + 1; }
-  const healed = wounds.filter(w=>w.status === 'healed');
-  let totalHealingDays = 0, count = 0;
-  for(const w of healed){
-    const ass = (await DB.all('assessments','woundId',w.id)).sort((a,b)=>a.createdAt-b.createdAt);
-    if(ass.length > 1){
-      totalHealingDays += (ass[ass.length-1].createdAt - ass[0].createdAt)/(24*60*60*1000);
-      count++;
-    }
-  }
-  const avgHealing = count ? Math.round(totalHealingDays/count) : 0;
-  const typeLabels = Object.keys(byType);
-  const typeColors = ['#2563eb','#10b981','#f59e0b','#dc2626','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+/* Capture tab */
+async function renderCapture(v){
+  const wounds = (await DB.all('wounds')).filter(w => w.status !== 'healed');
   v.innerHTML = `
-    <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('settings')">← Back</button></div>
-    <h1 class="title">Statistics</h1>
-    <p class="sub">Clinic overview</p>
-    <div class="stats" style="margin-bottom:16px">
-      <div class="stat"><div class="l">Patients</div><div class="v">${patients.length}</div></div>
-      <div class="stat"><div class="l">Wounds</div><div class="v">${wounds.length}</div></div>
-      <div class="stat"><div class="l">Healed</div><div class="v">${healed.length}</div></div>
-      <div class="stat"><div class="l">Avg healing</div><div class="v">${avgHealing}d</div></div>
-      <div class="stat"><div class="l">Assessments</div><div class="v">${assessments.length}</div></div>
-      <div class="stat"><div class="l">Active</div><div class="v">${wounds.filter(w=>w.status==='active').length}</div></div>
+    <h1 class="title">Capture</h1>
+    <p class="sub">Select a wound to photograph</p>
+    <div class="card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="muted" style="font-size:12px">📏 Place a <b>20 mm ArUco marker</b> next to the wound for accurate cm².</div>
     </div>
-    ${typeLabels.length ? `
-    <div class="card">
-      <b>Wounds by type</b>
-      <canvas id="pieChart" style="margin-top:10px;width:100%;height:180px;background:#f8fafc;border-radius:10px"></canvas>
-      <div class="pie-legend">${typeLabels.map((t,i)=>`<span><span class="tdot" style="background:${typeColors[i%typeColors.length]}"></span>${t.replace(/_/g,' ')} (${byType[t]})</span>`).join('')}</div>
-    </div>` : ''}`;
-  if(typeLabels.length) setTimeout(()=>drawPie(typeLabels.map(t=>byType[t]), typeColors), 30);
+    ${wounds.length ? (await Promise.all(wounds.map(async w => {
+      const p = await DB.get('patients', w.patientId);
+      return `<div class="card link" onclick="captureWound('${w.id}')">
+        <div class="row between"><div><b>${esc(w.label)}</b><div class="muted">${esc(p?.name || '')}${w.location?' · '+esc(w.location):''}</div></div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg></div></div>`;
+    }))).join('') : `<div class="empty"><p>No active wounds</p><button class="btn sm" onclick="go('patients')">Go to patients</button></div>`}`;
 }
-function drawPie(values, colors){
-  const c = $('#pieChart'); if(!c) return;
-  const dpr = window.devicePixelRatio || 1;
-  const w = c.clientWidth, h = 180;
-  c.width = w*dpr; c.height = h*dpr;
-  const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
-  const total = values.reduce((a,b)=>a+b,0);
-  if(!total) return;
-  const cx = w/2, cy = h/2, r = Math.min(w,h)*0.4;
-  let angle = -Math.PI/2;
-  values.forEach((val,i)=>{
-    const slice = (val/total) * Math.PI * 2;
-    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx, cy, r, angle, angle+slice); ctx.closePath();
-    ctx.fillStyle = colors[i%colors.length]; ctx.fill();
-    angle += slice;
-  });
-  ctx.beginPath(); ctx.arc(cx, cy, r*0.5, 0, Math.PI*2); ctx.fillStyle = '#fff'; ctx.fill();
-  ctx.fillStyle = '#0f172a'; ctx.font = 'bold 20px system-ui'; ctx.textAlign = 'center';
-  ctx.fillText(String(total), cx, cy+7);
-}
+function captureWound(woundId){ captureWithNativeCamera(woundId); }
 
-/* ═══════════ PATIENTS ═══════════ */
+/* Patients */
 async function renderPatients(v){
   const patients = (await DB.all('patients')).sort((a,b)=>b.createdAt-a.createdAt);
   v.innerHTML = `
@@ -776,7 +632,7 @@ function filterPatients(){
   });
 }
 
-/* ═══════════ PATIENT DETAIL ═══════════ */
+/* Patient detail */
 async function renderPatient(v){
   const p = state.currentPatient; if(!p) return go('patients');
   const wounds = (await DB.all('wounds','patientId',p.id)).sort((a,b)=>b.createdAt-a.createdAt);
@@ -805,7 +661,12 @@ async function renderPatient(v){
 }
 async function readPatient(p){
   const wounds = await DB.all('wounds','patientId',p.id);
-  const text = `Patient ${p.name}. ${p.mrn?'MRN '+p.mrn+'.':''} ${p.dob?'Date of birth '+p.dob+'.':''} ${p.diabetes?'Diabetic. ':''}${p.pvd?'Peripheral vascular disease. ':''}${p.smoker?'Smoker. ':''} ${wounds.length} wound${wounds.length===1?'':'s'} recorded: ${wounds.map(w=>w.label+', '+w.status).join('. ')}.`;
+  let text = `Patient ${p.name}.`;
+  if(p.mrn) text += ` MRN ${p.mrn}.`;
+  if(p.diabetes) text += ' Diabetic.';
+  if(p.pvd) text += ' Peripheral vascular disease.';
+  if(p.smoker) text += ' Smoker.';
+  text += ` ${wounds.length} wound${wounds.length===1?'':'s'} recorded: ` + wounds.map(w=>w.label+', '+w.status).join('. ');
   speak(text);
 }
 function woundRow(w){
@@ -814,7 +675,7 @@ function woundRow(w){
     <span class="badge ${w.status}">${esc(w.status)}</span></div></div>`;
 }
 
-/* ═══════════ WOUND DETAIL ═══════════ */
+/* Wound detail */
 const tissueColors = [
   {key:'granulation',color:'#e11d48',label:'Granulation'},
   {key:'slough',color:'#eab308',label:'Slough'},
@@ -872,8 +733,7 @@ async function renderWound(v){
         <div class="progress-ring">
           <svg width="120" height="120" viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="10"/>
-            <circle cx="60" cy="60" r="52" fill="none" stroke="#2563eb" stroke-width="10"
-              stroke-linecap="round" stroke-dasharray="${(pctClosed/100)*326.7} 326.7"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(pctClosed/100)*326.7} 326.7"/>
           </svg>
           <div class="pct"><div class="n">${pctClosed.toFixed(0)}%</div><div class="l">Closed</div></div>
         </div>
@@ -896,7 +756,7 @@ async function renderWound(v){
             ${closureDate ? `<div class="rng">Closure: <b>${closureDate.toLocaleDateString(undefined,{month:'short',day:'numeric'})}</b></div>` : ''}
           </div>
         </div>
-        ${par != null ? `<div class="muted" style="font-size:12px;margin-top:6px">PAR since first: <b>${par.toFixed(1)}%</b> ${par<20?'(delayed)':par>40?'(on track)':''}</div>` : ''}
+        ${par != null ? `<div class="muted" style="font-size:12px;margin-top:6px">PAR: <b>${par.toFixed(1)}%</b></div>` : ''}
       </div>` : ''}
 
     ${latest ? `
@@ -904,6 +764,7 @@ async function renderWound(v){
         <div class="row between" style="margin-bottom:10px">
           <b>Latest assessment</b>
           <div class="row" style="gap:4px">
+            <button class="btn sec sm" onclick="editClinical('${latest.id}')" style="padding:4px 8px;font-size:12px">✏️ Edit</button>
             <button class="btn sec sm" onclick="readAssessment('${w.id}')" style="padding:4px 8px;font-size:16px">🔊</button>
             <span class="muted">${fmtDate(latest.createdAt)}</span>
           </div>
@@ -928,63 +789,39 @@ async function renderWound(v){
           <div style="margin-top:14px"><div class="muted" style="font-size:11px;font-weight:600">TISSUE</div>
           <div class="tbar">${tissueColors.map(t=>{const val=latest.tissue[t.key]||0;return val>0?`<div style="width:${val}%;background:${t.color}"></div>`:''}).join('')}</div>
           <div class="tlegend">${tissueColors.map(t=>{const val=latest.tissue[t.key]||0;return val>0?`<span><span class="tdot" style="background:${t.color}"></span>${t.label} ${val}%</span>`:''}).join('')}</div></div>` : ''}
-      </div>` : '<div class="card"><div class="muted" style="text-align:center;padding:16px">No assessment yet. Tap "Take photo" to start.</div></div>'}
+      </div>` : '<div class="card"><div class="muted" style="text-align:center;padding:16px">No assessment yet.</div></div>'}
 
     ${ass.length > 1 ? `<div class="card"><b>Healing trend</b><canvas id="chart" style="margin-top:8px"></canvas></div>` : ''}
     ${imgs.length ? `<div class="card"><b>Photos (${imgs.length})</b><div class="grid3">${imgs.slice(-9).map(i=>`<img src="${imgSrc(i)}" onclick="viewImage('${i.id}')">`).join('')}</div></div>` : ''}`;
-
   if(ass.length > 1) setTimeout(()=>drawChart(ass), 50);
 }
-function toggleOverflow(){
-  const m = $('#overflowMenu');
-  if(m) m.classList.toggle('hidden');
-}
-function closeOverflow(){
-  const m = $('#overflowMenu');
-  if(m) m.classList.add('hidden');
-}
+function toggleOverflow(){ const m = $('#overflowMenu'); if(m) m.classList.toggle('hidden'); }
+function closeOverflow(){ const m = $('#overflowMenu'); if(m) m.classList.add('hidden'); }
 async function readAssessment(woundId){
   const w = await DB.get('wounds', woundId);
   const p = await DB.get('patients', w.patientId);
   const ass = (await DB.all('assessments','woundId',woundId)).sort((a,b)=>a.createdAt-b.createdAt);
   const latest = ass[ass.length-1];
-  if(!latest){ toast('No assessment to read'); return; }
-  const lines = [];
-  lines.push(`Assessment for ${p.name}, wound ${w.label}.`);
-  lines.push(`Date: ${new Date(latest.createdAt).toLocaleDateString()}.`);
-  if(latest.areaCm2) lines.push(`Area: ${latest.areaCm2} square centimeters.`);
-  if(latest.perimeterCm) lines.push(`Perimeter: ${latest.perimeterCm} centimeters.`);
-  if(latest.infection != null) lines.push(`Infection risk: ${(latest.infection*100).toFixed(0)} percent.`);
-  if(latest.tissue){
-    const parts = Object.entries(latest.tissue).filter(([k,v])=>v>0).map(([k,v])=>`${v} percent ${k}`);
-    if(parts.length) lines.push(`Tissue composition: ${parts.join(', ')}.`);
-  }
-  if(latest.pain != null) lines.push(`Pain: ${latest.pain} out of 10.`);
-  if(latest.exudate) lines.push(`Exudate: ${latest.exudate}.`);
-  if(latest.dressings) lines.push(`Dressing: ${latest.dressings}.`);
-  const forecast = forecastHealing(latest, ass, w);
-  lines.push(`Expected healing: ${forecast.expectedDays} days.`);
-  speak(lines.join(' '));
+  if(!latest){ toast('No assessment'); return; }
+  const l = [`Assessment for ${p.name}, ${w.label}.`, `Date: ${new Date(latest.createdAt).toLocaleDateString()}.`];
+  if(latest.areaCm2) l.push(`Area: ${latest.areaCm2} square centimeters.`);
+  if(latest.perimeterCm) l.push(`Perimeter: ${latest.perimeterCm} centimeters.`);
+  if(latest.infection != null) l.push(`Infection risk: ${(latest.infection*100).toFixed(0)} percent.`);
+  if(latest.tissue){ const parts = Object.entries(latest.tissue).filter(([k,v])=>v>0).map(([k,v])=>`${v} percent ${k}`); if(parts.length) l.push(`Tissue: ${parts.join(', ')}.`); }
+  if(latest.pain != null) l.push(`Pain: ${latest.pain} out of 10.`);
+  if(latest.dressings) l.push(`Dressing: ${latest.dressings}.`);
+  const f = forecastHealing(latest, ass, w);
+  l.push(`Expected healing: ${f.expectedDays} days.`);
+  speak(l.join(' '));
 }
 async function yultoAnalyzeWound(woundId){
   const imgs = (await DB.all('images','woundId',woundId)).sort((a,b)=>b.createdAt-a.createdAt);
-  if(!imgs.length){
-    toast('No photo yet — take one first');
-    return;
-  }
+  if(!imgs.length){ toast('No photo yet'); return; }
   const img = imgs[0];
   const dataUrl = img.dataUrl || (img.blob ? await blobToBase64(img.blob) : null);
   openYulto();
-  if(dataUrl){
-    setTimeout(async ()=>{
-      await processYulto({
-        image: dataUrl,
-        text: 'Analyze this wound. Identify tissue types, infection signs, and recommend dressing/management.'
-      });
-    }, 300);
-  }
+  if(dataUrl) setTimeout(()=>processYulto({ image: dataUrl, text: 'Analyze this wound. Identify tissue, infection signs, and recommend dressing/management.' }), 300);
 }
-
 function assessmentFlags(ass){
   if(ass.length < 2) return {cls:'new', icon:'🆕', label:'New wound — baseline recorded'};
   const a1 = ass[ass.length-2], a2 = ass[ass.length-1];
@@ -1008,17 +845,13 @@ function computeRiskStratification(latest, patient){
   if(score >= 2) return {level:'medium', label:'Medium'};
   return {level:'low', label:'Low'};
 }
-function imgSrc(rec){
-  if(rec.dataUrl) return rec.dataUrl;
-  if(rec.blob) return URL.createObjectURL(rec.blob);
-  return '';
-}
+function imgSrc(rec){ if(rec.dataUrl) return rec.dataUrl; if(rec.blob) return URL.createObjectURL(rec.blob); return ''; }
 function calcPAR(ass){
-  const withArea = ass.filter(a=>a.areaCm2);
-  if(withArea.length < 2) return null;
-  const first = withArea[0].areaCm2, last = withArea[withArea.length-1].areaCm2;
-  if(!first) return null;
-  return ((first-last)/first)*100;
+  const w = ass.filter(a=>a.areaCm2);
+  if(w.length < 2) return null;
+  const f = w[0].areaCm2, l = w[w.length-1].areaCm2;
+  if(!f) return null;
+  return ((f-l)/f)*100;
 }
 function drawChart(ass){
   const c = $('#chart'); if(!c) return;
@@ -1051,18 +884,14 @@ function drawChart(ass){
 function forecastHealing(latest, ass, wound){
   const area = latest.areaCm2;
   if(!area || area <= 0) return {expectedDays:0,optimisticDays:0,pessimisticDays:0,ratePerWeek:0,confidence:'high',basedOnTrajectory:false};
-  const withArea = ass.filter(a=>a.areaCm2);
-  if(withArea.length >= 2){
-    const first = withArea[0], last = withArea[withArea.length-1];
-    const days = (last.createdAt - first.createdAt)/(24*60*60*1000);
-    if(days >= 1 && first.areaCm2 > last.areaCm2){
-      const ratePerDay = (first.areaCm2 - last.areaCm2)/days;
-      return {
-        expectedDays: clamp(Math.round(area/ratePerDay),3,365),
-        optimisticDays: clamp(Math.round(area/(ratePerDay*1.35)),3,365),
-        pessimisticDays: clamp(Math.round(area/(ratePerDay*0.6)),3,365),
-        ratePerWeek: ratePerDay*7, confidence:'high', basedOnTrajectory:true
-      };
+  const w = ass.filter(a=>a.areaCm2);
+  if(w.length >= 2){
+    const f = w[0], l = w[w.length-1];
+    const days = (l.createdAt - f.createdAt)/(24*60*60*1000);
+    if(days >= 1 && f.areaCm2 > l.areaCm2){
+      const r = (f.areaCm2 - l.areaCm2)/days;
+      return {expectedDays: clamp(Math.round(area/r),3,365), optimisticDays: clamp(Math.round(area/(r*1.35)),3,365),
+        pessimisticDays: clamp(Math.round(area/(r*0.6)),3,365), ratePerWeek: r*7, confidence:'high', basedOnTrajectory:true};
     }
   }
   const BASE = {diabetic_foot:0.55,pressure_ulcer:0.65,venous_ulcer:0.85,arterial_ulcer:0.70,surgical:1.20,burn:0.90,rash:1.80,other:0.80};
@@ -1077,24 +906,19 @@ function forecastHealing(latest, ass, wound){
   if(p.pvd) rate *= 0.65;
   if(p.smoker) rate *= 0.8;
   rate *= (1 - (latest.infection||0) * 0.55);
-  const ratePerDay = rate/7;
-  return {
-    expectedDays: clamp(Math.round(area/ratePerDay),3,365),
-    optimisticDays: clamp(Math.round(area/(ratePerDay*1.4)),3,365),
-    pessimisticDays: clamp(Math.round(area/(ratePerDay*0.6)),3,365),
-    ratePerWeek: rate, confidence:'medium', basedOnTrajectory:false
-  };
+  const r = rate/7;
+  return {expectedDays: clamp(Math.round(area/r),3,365), optimisticDays: clamp(Math.round(area/(r*1.4)),3,365),
+    pessimisticDays: clamp(Math.round(area/(r*0.6)),3,365), ratePerWeek: rate, confidence:'medium', basedOnTrajectory:false};
 }
 function computeBiofilmScore(a){
   if(!a) return 0;
-  const slough = (a.tissue?.slough || 0) / 100;
-  const gran   = (a.tissue?.granulation || 0) / 100;
-  const moist  = a.exudate === 'high' ? 1 : a.exudate === 'moderate' ? 0.6 : 0.3;
-  const inf    = a.infection || 0;
-  return +Math.min(1, (slough * 0.5) + (moist * 0.2) + (inf * 0.2) + ((1 - gran) * 0.1)).toFixed(2);
+  const s = (a.tissue?.slough || 0)/100, g = (a.tissue?.granulation || 0)/100;
+  const m = a.exudate === 'high' ? 1 : a.exudate === 'moderate' ? 0.6 : 0.3;
+  const i = a.infection || 0;
+  return +Math.min(1, (s*0.5) + (m*0.2) + (i*0.2) + ((1-g)*0.1)).toFixed(2);
 }
 
-/* ═══════════ HEATMAP ═══════════ */
+/* Heatmap */
 async function renderHeatmap(v){
   const w = state.currentWound; if(!w) return go('home');
   const imgs = (await DB.all('images','woundId',w.id)).sort((a,b)=>b.createdAt-a.createdAt);
@@ -1114,10 +938,8 @@ async function renderHeatmap(v){
 async function generateHeatmapsFor(imgRec){
   try{
     const dataUrl = imgRec.dataUrl || (imgRec.blob ? await blobToBase64(imgRec.blob) : null);
-    if(!dataUrl){ $('#hmBox').innerHTML = '<div class="muted">No image data</div>'; return; }
-    const img = await new Promise((res, rej) => {
-      const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = dataUrl;
-    });
+    if(!dataUrl){ $('#hmBox').innerHTML = '<div class="muted">No image</div>'; return; }
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = dataUrl; });
     const MAX = 700;
     const scale = Math.min(1, MAX/Math.max(img.width, img.height));
     const W = Math.round(img.width*scale), H = Math.round(img.height*scale);
@@ -1136,9 +958,7 @@ async function generateHeatmapsFor(imgRec){
         for(let i = 0; i < 256*256; i++) raw[i] = maskData[i] > 0.5 ? 1 : 0;
         const largest = largestComponent(raw, 256, 256);
         mask = new Uint8Array(W*H);
-        for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
-          mask[y*W+x] = largest[Math.floor(y*256/H)*256 + Math.floor(x*256/W)];
-        }
+        for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) mask[y*W+x] = largest[Math.floor(y*256/H)*256 + Math.floor(x*256/W)];
       } catch(e){ mask = segmentWoundFallback(data, W, H); }
     } else mask = segmentWoundFallback(data, W, H);
 
@@ -1155,42 +975,25 @@ async function generateHeatmapsFor(imgRec){
         timg.data[i*4]=c[0]; timg.data[i*4+1]=c[1]; timg.data[i*4+2]=c[2]; timg.data[i*4+3]=c[3];
       } else {
         const redness = r - (g+b)/2;
-        if(redness > 20){
-          redPx++;
-          eimg.data[i*4]=255; eimg.data[i*4+1]=60; eimg.data[i*4+2]=60;
-          eimg.data[i*4+3]=Math.min(200, Math.round(redness*2.5));
-        }
+        if(redness > 20){ redPx++; eimg.data[i*4]=255; eimg.data[i*4+1]=60; eimg.data[i*4+2]=60; eimg.data[i*4+3]=Math.min(200, Math.round(redness*2.5)); }
         periPx++;
       }
     }
-    tctx.putImageData(timg, 0, 0);
-    ectx.putImageData(eimg, 0, 0);
+    tctx.putImageData(timg, 0, 0); ectx.putImageData(eimg, 0, 0);
     const tissueBlob = await new Promise(r=>tissueCanvas.toBlob(r,'image/png'));
     const eryBlob = await new Promise(r=>eryCanvas.toBlob(r,'image/png'));
-    window._hmData = {
-      tissue: URL.createObjectURL(tissueBlob),
-      ery: URL.createObjectURL(eryBlob),
-      orig: dataUrl,
-      eryScore: periPx ? redPx/periPx : 0,
-    };
+    window._hmData = { tissue: URL.createObjectURL(tissueBlob), ery: URL.createObjectURL(eryBlob), orig: dataUrl, eryScore: periPx ? redPx/periPx : 0 };
     switchHmTab('tissue');
-  }catch(e){
-    $('#hmBox').innerHTML = '<div class="muted">Heatmap failed: '+esc(e.message)+'</div>';
-  }
+  }catch(e){ $('#hmBox').innerHTML = '<div class="muted">Heatmap failed: '+esc(e.message)+'</div>'; }
 }
 function switchHmTab(tab){
-  ['tissue','ery','orig'].forEach(t=>{
-    const btn = $('#hmTab-'+t);
-    if(btn) btn.classList.toggle('on', t === tab);
-  });
-  if(!window._hmData){ return; }
-  const legend = tab === 'tissue' ? `<div class="tlegend" style="margin-top:10px;justify-content:center">
-    ${tissueColors.map(t=>`<span><span class="tdot" style="background:${t.color}"></span>${t.label}</span>`).join('')}
-  </div>` : tab === 'ery' ? `<div class="muted" style="font-size:11px;margin-top:10px">Red areas = inflammation/erythema (${(window._hmData.eryScore*100).toFixed(0)}% of periwound)</div>` : '';
+  ['tissue','ery','orig'].forEach(t=>{ const b = $('#hmTab-'+t); if(b) b.classList.toggle('on', t === tab); });
+  if(!window._hmData) return;
+  const legend = tab === 'tissue' ? `<div class="tlegend" style="margin-top:10px;justify-content:center">${tissueColors.map(t=>`<span><span class="tdot" style="background:${t.color}"></span>${t.label}</span>`).join('')}</div>` : tab === 'ery' ? `<div class="muted" style="font-size:11px;margin-top:10px">Erythema: ${(window._hmData.eryScore*100).toFixed(0)}% of periwound</div>` : '';
   $('#hmBox').innerHTML = `<img src="${window._hmData[tab]}" style="width:100%;border-radius:12px">${legend}`;
 }
 
-/* ═══════════ PROGRESSION / TIMELINE / COMPARE ═══════════ */
+/* Progression / Timeline / Compare */
 async function renderProgression(v){
   const w = state.currentWound; if(!w) return go('home');
   const imgs = (await DB.all('images','woundId',w.id)).sort((a,b)=>a.createdAt-b.createdAt);
@@ -1250,7 +1053,7 @@ async function renderTimeline(v){
 async function renderCompare(v){
   const w = state.currentWound; if(!w) return go('home');
   const imgs = (await DB.all('images','woundId',w.id)).sort((a,b)=>a.createdAt-b.createdAt);
-  if(imgs.length < 2){ v.innerHTML = '<div class="empty"><p>Need at least 2 photos</p><button class="btn sm" onclick="go(\'wound\')">Back</button></div>'; return; }
+  if(imgs.length < 2){ v.innerHTML = '<div class="empty"><p>Need 2+ photos</p><button class="btn sm" onclick="go(\'wound\')">Back</button></div>'; return; }
   const n = Math.min(4, imgs.length);
   const picks = [imgs[0]];
   if(n > 2){ const step = (imgs.length-1)/(n-1); for(let i=1;i<n-1;i++) picks.push(imgs[Math.round(i*step)]); }
@@ -1259,7 +1062,6 @@ async function renderCompare(v){
   const a1 = ass.find(x=>x.imageId === picks[0].id) || ass[0];
   const aN = ass.find(x=>x.imageId === picks[picks.length-1].id) || ass[ass.length-1];
   const areaChange = (a1?.areaCm2 && aN?.areaCm2) ? ((aN.areaCm2 - a1.areaCm2)/a1.areaCm2)*100 : null;
-
   v.innerHTML = `
     <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('wound')">← Back</button></div>
     <h1 class="title">Compare</h1>
@@ -1275,26 +1077,20 @@ async function renderCompare(v){
     </div>`;
 }
 
-/* ═══════════ SCORES ═══════════ */
+/* Scores */
 async function renderScores(v){
   const w = state.currentWound; if(!w) return go('home');
   const ass = (await DB.all('assessments','woundId',w.id)).sort((a,b)=>a.createdAt-b.createdAt);
   const latest = ass[ass.length-1];
-  if(!latest){ v.innerHTML = '<div class="empty"><p>No assessment yet</p><button class="btn sm" onclick="go(\'wound\')">Back</button></div>'; return; }
-  const push = calcPUSH(latest);
-  const bates = calcBates(latest);
-  const wagner = calcWagner(latest);
-  const times = calcTIMES(latest);
-  const design = calcDESIGN(latest);
-  const wbp = calcWBP(latest);
+  if(!latest){ v.innerHTML = '<div class="empty"><p>No assessment</p><button class="btn sm" onclick="go(\'wound\')">Back</button></div>'; return; }
+  const push = calcPUSH(latest), bates = calcBates(latest), wagner = calcWagner(latest), times = calcTIMES(latest), design = calcDESIGN(latest), wbp = calcWBP(latest);
   v.innerHTML = `
     <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('wound')">← Back</button></div>
     <h1 class="title">Clinical scores</h1>
     <p class="sub">${esc(w.label)} · ${fmtDate(latest.createdAt)}</p>
-
     <div class="card">
       <b>PUSH 3.0</b>
-      <p class="muted" style="margin:4px 0 10px">NPUAP validated · lower = better</p>
+      <p class="muted" style="margin:4px 0 10px">lower = better</p>
       <div class="stats">
         <div class="stat"><div class="l">Area</div><div class="v">${push.area}</div></div>
         <div class="stat"><div class="l">Exudate</div><div class="v">${push.exudate}</div></div>
@@ -1302,26 +1098,23 @@ async function renderScores(v){
         <div class="stat"><div class="l">TOTAL</div><div class="v" style="color:var(--brand)">${push.total} / 17</div></div>
       </div>
     </div>
-
     <div class="card">
-      <b>Bates-Jensen (BWAT) — partial</b>
-      <p class="muted" style="margin:4px 0 10px">6 of 13 items scored</p>
+      <b>Bates-Jensen (partial)</b>
+      <p class="muted" style="margin:4px 0 10px">6 of 13 items</p>
       <div class="stats">
         <div class="stat"><div class="l">Size</div><div class="v">${bates.size}</div></div>
         <div class="stat"><div class="l">Depth</div><div class="v">${bates.depth}</div></div>
-        <div class="stat"><div class="l">Necrotic type</div><div class="v">${bates.necroticType}</div></div>
-        <div class="stat"><div class="l">Necrotic amount</div><div class="v">${bates.necroticAmount}</div></div>
+        <div class="stat"><div class="l">Necro type</div><div class="v">${bates.necroticType}</div></div>
+        <div class="stat"><div class="l">Necro amount</div><div class="v">${bates.necroticAmount}</div></div>
         <div class="stat"><div class="l">Granulation</div><div class="v">${bates.granulation}</div></div>
-        <div class="stat"><div class="l">Epithelialization</div><div class="v">${bates.epithelialization}</div></div>
+        <div class="stat"><div class="l">Epithelial</div><div class="v">${bates.epithelialization}</div></div>
       </div>
     </div>
-
-    <div class="card"><b>Wagner classification</b><p class="muted" style="margin:4px 0 10px">Grade ${wagner.grade} — ${wagner.label}</p></div>
-    <div class="card"><b>DESIGN score</b><p class="muted" style="margin:4px 0 10px">${design.total}/18 — ${design.severity} severity</p></div>
-    <div class="card"><b>Wound Bed Preparation</b><p class="muted" style="margin:4px 0 10px">${wbp.score}/12 — ${wbp.label}</p></div>
-
+    <div class="card"><b>Wagner</b><p class="muted" style="margin:4px 0 0">Grade ${wagner.grade} — ${wagner.label}</p></div>
+    <div class="card"><b>DESIGN</b><p class="muted" style="margin:4px 0 0">${design.total}/18 — ${design.severity}</p></div>
+    <div class="card"><b>WBP</b><p class="muted" style="margin:4px 0 0">${wbp.score}/12 — ${wbp.label}</p></div>
     <div class="card">
-      <b>TIMES framework</b>
+      <b>TIMES</b>
       <div class="row between" style="font-size:13px;margin-top:8px"><span>T — Tissue</span><b>${times.T}</b></div>
       <div class="row between" style="font-size:13px;margin-top:4px"><span>I — Infection</span><b>${times.I}</b></div>
       <div class="row between" style="font-size:13px;margin-top:4px"><span>M — Moisture</span><b>${times.M}</b></div>
@@ -1331,74 +1124,67 @@ async function renderScores(v){
 }
 function calcPUSH(a){
   const area = a.areaCm2 || 0;
-  let areaScore = 0;
-  if(area===0)areaScore=0;else if(area<0.3)areaScore=1;else if(area<=0.6)areaScore=2;else if(area<=1.0)areaScore=3;else if(area<=2.0)areaScore=4;else if(area<=3.0)areaScore=5;else if(area<=4.0)areaScore=6;else if(area<=8.0)areaScore=7;else if(area<=12.0)areaScore=8;else if(area<=24.0)areaScore=9;else areaScore=10;
-  let tissueScore = 2;
-  const t = a.tissue || {};
-  if((t.necrosis||0) > 0) tissueScore=4; else if((t.slough||0) > 0) tissueScore=3;
-  else if((t.epithelial||0) > 50) tissueScore=1; else if((t.granulation||0) > 0) tissueScore=2;
-  let exudateScore = 1;
-  if(a.exudate === 'moderate') exudateScore=2; else if(a.exudate === 'high') exudateScore=3;
-  return {area:areaScore, exudate:exudateScore, tissue:tissueScore, total:areaScore+exudateScore+tissueScore};
+  let s = 0;
+  if(area===0)s=0;else if(area<0.3)s=1;else if(area<=0.6)s=2;else if(area<=1.0)s=3;else if(area<=2.0)s=4;else if(area<=3.0)s=5;else if(area<=4.0)s=6;else if(area<=8.0)s=7;else if(area<=12.0)s=8;else if(area<=24.0)s=9;else s=10;
+  let t = 2;
+  const tissue = a.tissue || {};
+  if((tissue.necrosis||0)>0)t=4;else if((tissue.slough||0)>0)t=3;else if((tissue.epithelial||0)>50)t=1;else if((tissue.granulation||0)>0)t=2;
+  let e = 1;
+  if(a.exudate==='moderate')e=2;else if(a.exudate==='high')e=3;
+  return {area:s, exudate:e, tissue:t, total:s+e+t};
 }
 function calcBates(a){
   const area = a.areaCm2 || 0; const depth = a.depthCm || 0; const t = a.tissue || {};
   const size = area<1?1:area<4?2:area<10?3:area<20?4:5;
   const dep = depth<0.1?1:depth<0.3?2:depth<0.6?3:depth<1.0?4:5;
-  const necroType = (t.necrosis||0)>0?5:(t.slough||0)>0?3:1;
-  const necroAmt = (t.necrosis||0)>50?5:(t.necrosis||0)>0?4:(t.slough||0)>50?3:(t.slough||0)>0?2:1;
-  const gran = (t.granulation||0)>75?1:(t.granulation||0)>50?2:(t.granulation||0)>25?3:(t.granulation||0)>0?4:5;
-  const epit = (t.epithelial||0)>75?1:(t.epithelial||0)>50?2:(t.epithelial||0)>25?3:(t.epithelial||0)>0?4:5;
-  return {size, depth:dep, necroticType:necroType, necroticAmount:necroAmt, granulation:gran, epithelialization:epit};
+  const nt = (t.necrosis||0)>0?5:(t.slough||0)>0?3:1;
+  const na = (t.necrosis||0)>50?5:(t.necrosis||0)>0?4:(t.slough||0)>50?3:(t.slough||0)>0?2:1;
+  const gr = (t.granulation||0)>75?1:(t.granulation||0)>50?2:(t.granulation||0)>25?3:(t.granulation||0)>0?4:5;
+  const ep = (t.epithelial||0)>75?1:(t.epithelial||0)>50?2:(t.epithelial||0)>25?3:(t.epithelial||0)>0?4:5;
+  return {size, depth:dep, necroticType:nt, necroticAmount:na, granulation:gr, epithelialization:ep};
 }
 function calcWagner(a){
   const d = a.depthCm || 0;
-  const infected = (a.infection || 0) > 0.5;
-  const necrotic = (a.tissue?.necrosis || 0) > 20;
-  if(necrotic && infected) return {grade:'4', label:'Localized gangrene'};
-  if(necrotic) return {grade:'5', label:'Extensive gangrene'};
-  if(infected && d > 0.3) return {grade:'3', label:'Deep ulcer with abscess'};
-  if(infected) return {grade:'2', label:'Deep ulcer with infection'};
+  const inf = (a.infection || 0) > 0.5, nec = (a.tissue?.necrosis || 0) > 20;
+  if(nec && inf) return {grade:'4', label:'Localized gangrene'};
+  if(nec) return {grade:'5', label:'Extensive gangrene'};
+  if(inf && d > 0.3) return {grade:'3', label:'Deep ulcer with abscess'};
+  if(inf) return {grade:'2', label:'Deep ulcer with infection'};
   if(d > 0.3) return {grade:'1', label:'Deep ulcer to tendon/bone'};
   return {grade:'0', label:'No ulcer'};
 }
 function calcDESIGN(a){
-  const t = a.tissue || {};
-  const d = a.depthCm || 0;
-  const depth = d < 0.1 ? 0 : d < 0.3 ? 1 : d < 0.6 ? 2 : 3;
-  const inf = (a.infection || 0) > 0.6 ? 3 : (a.infection || 0) > 0.3 ? 2 : (a.infection || 0) > 0.1 ? 1 : 0;
-  const sens = a.pain != null ? Math.min(3, Math.round(a.pain / 3.3)) : 1;
-  const tissue = (t.necrosis || 0) > 30 ? 3 : (t.slough || 0) > 50 ? 2 : (t.slough || 0) > 20 ? 1 : 0;
-  const edema = a.periwound === 'edema' ? 2 : 1;
-  const size = (a.areaCm2 || 0) > 10 ? 3 : (a.areaCm2 || 0) > 4 ? 2 : (a.areaCm2 || 0) > 1 ? 1 : 0;
-  const total = depth + inf + sens + tissue + edema + size;
-  const sev = total <= 6 ? 'Low' : total <= 11 ? 'Moderate' : 'High';
-  return {total, severity: sev};
+  const t = a.tissue || {}; const d = a.depthCm || 0;
+  const depth = d<0.1?0:d<0.3?1:d<0.6?2:3;
+  const inf = (a.infection||0)>0.6?3:(a.infection||0)>0.3?2:(a.infection||0)>0.1?1:0;
+  const sens = a.pain != null ? Math.min(3, Math.round(a.pain/3.3)) : 1;
+  const tissue = (t.necrosis||0)>30?3:(t.slough||0)>50?2:(t.slough||0)>20?1:0;
+  const edema = a.periwound==='edema'?2:1;
+  const size = (a.areaCm2||0)>10?3:(a.areaCm2||0)>4?2:(a.areaCm2||0)>1?1:0;
+  const total = depth+inf+sens+tissue+edema+size;
+  return {total, severity: total<=6?'Low':total<=11?'Moderate':'High'};
 }
 function calcWBP(a){
   const t = a.tissue || {};
-  let score = 0;
-  score += (t.granulation || 0) > 50 ? 3 : (t.granulation || 0) > 20 ? 2 : 1;
-  score += (t.necrosis || 0) < 10 ? 3 : (t.necrosis || 0) < 30 ? 2 : 1;
-  score += (a.infection || 0) < 0.2 ? 3 : (a.infection || 0) < 0.5 ? 2 : 1;
-  score += (a.exudate === 'low' || a.exudate === 'none') ? 3 : a.exudate === 'moderate' ? 2 : 1;
-  const label = score >= 10 ? 'Ready for healing' : score >= 7 ? 'Preparing' : 'Needs intervention';
-  return { score, label };
+  let s = 0;
+  s += (t.granulation||0)>50?3:(t.granulation||0)>20?2:1;
+  s += (t.necrosis||0)<10?3:(t.necrosis||0)<30?2:1;
+  s += (a.infection||0)<0.2?3:(a.infection||0)<0.5?2:1;
+  s += (a.exudate==='low'||a.exudate==='none')?3:a.exudate==='moderate'?2:1;
+  return {score:s, label: s>=10?'Ready for healing': s>=7?'Preparing':'Needs intervention'};
 }
 function calcTIMES(a){
   const t = a.tissue || {};
   let T = 'Granulating';
-  if((t.necrosis||0) > 20) T = 'Necrotic';
-  else if((t.slough||0) > 30) T = 'Sloughy';
-  else if((t.epithelial||0) > 30) T = 'Epithelializing';
-  const I = (a.infection||0) > 0.5 ? 'Infected' : (a.infection||0) > 0.3 ? 'Colonized' : 'Clean';
-  const M = a.exudate === 'high' ? 'High' : a.exudate === 'moderate' ? 'Moderate' : a.exudate === 'low' ? 'Low' : 'Balanced';
-  const E = (t.granulation||0) > 30 ? 'Advancing' : 'Non-advancing';
-  const S = a.periwound === 'macerated' ? 'Macerated' : a.periwound === 'erythema' ? 'Erythema' : 'Healthy';
+  if((t.necrosis||0)>20)T='Necrotic';else if((t.slough||0)>30)T='Sloughy';else if((t.epithelial||0)>30)T='Epithelializing';
+  const I = (a.infection||0)>0.5?'Infected':(a.infection||0)>0.3?'Colonized':'Clean';
+  const M = a.exudate==='high'?'High':a.exudate==='moderate'?'Moderate':a.exudate==='low'?'Low':'Balanced';
+  const E = (t.granulation||0)>30?'Advancing':'Non-advancing';
+  const S = a.periwound==='macerated'?'Macerated':a.periwound==='erythema'?'Erythema':'Healthy';
   return {T, I, M, E, S};
 }
 
-/* ═══════════ PATIENT FORM ═══════════ */
+/* Patient form */
 function openNewPatient(){ openPatientForm(); }
 function editPatient(id){ DB.get('patients',id).then(openPatientForm); }
 function openPatientForm(p){
@@ -1426,22 +1212,17 @@ function openPatientForm(p){
 async function savePatient(id){
   const name = $('#f_name').value.trim(); if(!name){ toast('Name required'); return; }
   const existing = id ? await DB.get('patients',id) : null;
-  const data = {
-    id: id || uid(), name, mrn: $('#f_mrn').value.trim(),
-    dob: $('#f_dob').value || null, sex: $('#f_sex').value || null,
+  const data = {id: id||uid(), name, mrn: $('#f_mrn').value.trim(), dob: $('#f_dob').value||null, sex: $('#f_sex').value||null,
     diabetes: $('#f_dm').checked, pvd: $('#f_pvd').checked, smoker: $('#f_smoke').checked,
-    hba1c: $('#f_hba1c').value ? parseFloat($('#f_hba1c').value) : null,
-    photoConsent: $('#f_consent').checked,
-    notes: $('#f_notes').value.trim() || null,
-    createdAt: existing?.createdAt || Date.now(), updatedAt: Date.now()
-  };
+    hba1c: $('#f_hba1c').value?parseFloat($('#f_hba1c').value):null, photoConsent: $('#f_consent').checked,
+    notes: $('#f_notes').value.trim()||null, createdAt: existing?.createdAt||Date.now(), updatedAt: Date.now()};
   await DB.put('patients', data);
   closeModal(); toast('Saved');
   if(state.screen === 'patient' && state.currentPatient?.id === id){ state.currentPatient = data; render(); }
   else if(id) render();
 }
 
-/* ═══════════ WOUND FORM ═══════════ */
+/* Wound form */
 const WOUND_TEMPLATES = {
   'Diabetic foot ulcer': {type:'diabetic_foot', label:'Diabetic foot ulcer', location:'Foot'},
   'Pressure ulcer': {type:'pressure_ulcer', label:'Pressure ulcer', location:'Sacrum'},
@@ -1451,7 +1232,7 @@ const WOUND_TEMPLATES = {
   'Burn': {type:'burn', label:'Burn', location:'Upper limb'},
   'Skin rash': {type:'rash', label:'Skin rash', location:'Trunk'},
 };
-function openNewWound(){ if(!state.currentPatient){ toast('No patient selected'); return; } openWoundForm(null); }
+function openNewWound(){ if(!state.currentPatient){ toast('No patient'); return; } openWoundForm(null); }
 function editWound(id){ DB.get('wounds',id).then(openWoundForm); }
 function openWoundForm(w){
   w = w || {};
@@ -1459,13 +1240,12 @@ function openWoundForm(w){
   const statuses = ['active','healed','stalled','infected','referred'];
   openModal(`
     <h2>${w.id ? 'Edit' : 'New'} wound</h2>
-    ${!w.id ? `<label class="label">Quick template</label>
-      <div class="chips">${Object.keys(WOUND_TEMPLATES).map(t=>`<button class="chip" onclick="applyTemplate('${t}')">${t}</button>`).join('')}</div>` : ''}
+    ${!w.id ? `<label class="label">Quick template</label><div class="chips">${Object.keys(WOUND_TEMPLATES).map(t=>`<button class="chip" onclick="applyTemplate('${t}')">${t}</button>`).join('')}</div>` : ''}
     <label class="label">Label *</label><input id="w_label" value="${esc(w.label || '')}">
     <label class="label">Type</label><select id="w_type">${types.map(t=>`<option value="${t}" ${w.type===t?'selected':''}>${t.replace(/_/g,' ')}</option>`).join('')}</select>
     <label class="label">Body location</label><input id="w_loc" value="${esc(w.location || '')}">
     <label class="label">Status</label><select id="w_status">${statuses.map(s=>`<option value="${s}" ${w.status===s?'selected':''}>${s}</option>`).join('')}</select>
-    <label class="label">Stage / grade (optional)</label><input id="w_stage" value="${esc(w.stage || '')}" placeholder="e.g. Wagner 2">
+    <label class="label">Stage / grade</label><input id="w_stage" value="${esc(w.stage || '')}" placeholder="e.g. Wagner 2">
     <label class="label">Onset date</label><input id="w_onset" type="date" value="${w.onsetDate ? new Date(w.onsetDate).toISOString().slice(0,10) : ''}">
     <label class="label">Next visit</label><input id="w_next" type="date" value="${w.nextVisit ? new Date(w.nextVisit).toISOString().slice(0,10) : ''}">
     <label class="label">Notes</label><textarea id="w_notes">${esc(w.notes || '')}</textarea>
@@ -1474,26 +1254,20 @@ function openWoundForm(w){
 }
 function applyTemplate(name){
   const t = WOUND_TEMPLATES[name]; if(!t) return;
-  $('#w_label').value = t.label;
-  $('#w_type').value = t.type;
-  $('#w_loc').value = t.location;
+  $('#w_label').value = t.label; $('#w_type').value = t.type; $('#w_loc').value = t.location;
 }
 async function saveWound(id){
   const label = $('#w_label').value.trim(); if(!label){ toast('Label required'); return; }
   const existing = id ? await DB.get('wounds',id) : null;
   const nextRaw = $('#w_next').value;
   const onsetRaw = $('#w_onset').value;
-  const data = {
-    id: id || uid(), patientId: existing?.patientId || state.currentPatient.id,
-    label, type: $('#w_type').value, location: $('#w_loc').value.trim() || null,
-    status: $('#w_status').value, stage: $('#w_stage').value.trim() || null,
+  const data = {id: id||uid(), patientId: existing?.patientId||state.currentPatient.id,
+    label, type: $('#w_type').value, location: $('#w_loc').value.trim()||null,
+    status: $('#w_status').value, stage: $('#w_stage').value.trim()||null,
     nextVisit: nextRaw ? new Date(nextRaw).getTime() : null,
     onsetDate: onsetRaw ? new Date(onsetRaw).getTime() : (existing?.onsetDate || Date.now()),
-    notes: $('#w_notes').value.trim() || null,
-    template: existing?.template || null,
-    baselineArea: existing?.baselineArea || null,
-    createdAt: existing?.createdAt || Date.now(), updatedAt: Date.now()
-  };
+    notes: $('#w_notes').value.trim()||null, template: existing?.template||null,
+    baselineArea: existing?.baselineArea||null, createdAt: existing?.createdAt||Date.now(), updatedAt: Date.now()};
   await DB.put('wounds', data);
   closeModal(); toast('Saved');
   if(state.screen === 'wound' && state.currentWound?.id === id){ state.currentWound = data; render(); }
@@ -1507,17 +1281,15 @@ async function deleteWound(id){
   toast('Wound deleted'); go('patient');
 }
 
-/* ═══════════ CAPTURE + ANALYZE ═══════════ */
+/* Capture + analyze */
 function captureWithNativeCamera(woundId){
   const input = document.createElement('input');
   input.type = 'file'; input.accept = 'image/*'; input.capture = 'environment';
-  input.style.display = 'none';
-  document.body.appendChild(input);
+  input.style.display = 'none'; document.body.appendChild(input);
   input.onchange = async e => {
-    const file = e.target.files?.[0];
-    document.body.removeChild(input);
-    if(!file){ toast('No photo taken'); return; }
-    toast('Processing photo…');
+    const file = e.target.files?.[0]; document.body.removeChild(input);
+    if(!file){ toast('No photo'); return; }
+    toast('Processing…');
     await saveAndAnalyze(woundId, file);
   };
   input.click();
@@ -1525,16 +1297,10 @@ function captureWithNativeCamera(woundId){
 async function saveAndAnalyze(woundId, blob){
   const img = await loadImage(blob);
   const dataUrl = await blobToBase64(blob);
-  const imageRec = {
-    id: uid(), woundId,
-    dataUrl: state.native ? dataUrl : null,
-    blob: state.native ? null : blob,
-    width: img.width, height: img.height, annotation: null, createdAt: Date.now()
-  };
+  const imageRec = {id: uid(), woundId, dataUrl: state.native ? dataUrl : null,
+    blob: state.native ? null : blob, width: img.width, height: img.height, annotation: null, createdAt: Date.now()};
   await DB.put('images', imageRec);
-
   openModal(`<div class="analyzing"><div class="spinner"></div><b>Analyzing wound…</b><div class="muted" id="analyze-step" style="margin-top:8px">Detecting marker…</div><div class="progress" style="margin-top:14px"><div id="analyze-progress" style="width:5%"></div></div></div>`, true);
-
   let result;
   try{
     const wound = await DB.get('wounds', woundId);
@@ -1545,95 +1311,81 @@ async function saveAndAnalyze(woundId, blob){
       $('#analyze-progress').style.width = step.pct + '%';
     });
   } catch(e){ closeModal(); toast('Analysis failed: ' + e.message, 3500); return; }
-
   closeModal();
-  const clinical = await askClinicalDetails();
-  if(!clinical){ toast('Cancelled'); return; }
-
+  const clinical = {pain: 0, exudate: null, odor: null, periwound: null, underminingCm: null, tunnelingCm: null, dressings: null, debridement: null, notes: null};
   const temp = { ...result, ...clinical, createdAt: Date.now() };
   const existing = (await DB.all('assessments','woundId',woundId)).sort((a,b)=>a.createdAt-b.createdAt);
   const wound = await DB.get('wounds', woundId);
   const forecast = forecastHealing(temp, [...existing, temp], wound);
-
   if(!wound.baselineArea && result.areaCm2 && existing.length === 0){
     wound.baselineArea = result.areaCm2;
     await DB.put('wounds', wound);
     state.currentWound = wound;
   }
-
-  const assessment = {
-    id: uid(), woundId, imageId: imageRec.id,
-    areaCm2: result.areaCm2, perimeterCm: result.perimeterCm,
-    lengthCm: result.lengthCm, widthCm: result.widthCm,
-    depthCm: result.depthCm, volumeCm3: result.volumeCm3,
-    tissue: result.tissue, infection: result.infection, healingIndex: result.healingIndex,
-    circularity: result.circularity, elongation: result.elongation, edgeIrregularity: result.edgeIrregularity,
+  const assessment = {id: uid(), woundId, imageId: imageRec.id,
+    areaCm2: result.areaCm2, perimeterCm: result.perimeterCm, lengthCm: result.lengthCm, widthCm: result.widthCm,
+    depthCm: result.depthCm, volumeCm3: result.volumeCm3, tissue: result.tissue, infection: result.infection,
+    healingIndex: result.healingIndex, circularity: result.circularity, elongation: result.elongation,
+    edgeIrregularity: result.edgeIrregularity,
     expectedDays: forecast.expectedDays, optimisticDays: forecast.optimisticDays,
     pessimisticDays: forecast.pessimisticDays, ratePerWeek: forecast.ratePerWeek,
-    calibrated: result.calibrated ? 1 : 0,
-    pain: clinical.pain, exudate: clinical.exudate, odor: clinical.odor,
-    periwound: clinical.periwound, underminingCm: clinical.underminingCm,
-    tunnelingCm: clinical.tunnelingCm, notes: clinical.notes,
-    dressings: clinical.dressings, debridement: clinical.debridement,
-    clinician: (await DB.get('settings','clinician'))?.v || null,
-    createdAt: Date.now()
-  };
+    calibrated: result.calibrated ? 1 : 0, pain: 0, clinician: (await DB.get('settings','clinician'))?.v || null,
+    createdAt: Date.now()};
   await DB.put('assessments', assessment);
-  logAudit('assessment', {woundId, areaCm2:result.areaCm2, expectedDays:forecast.expectedDays});
+  logAudit('assessment', {woundId, areaCm2:result.areaCm2});
   toast('Analysis complete — ' + forecast.expectedDays + ' days forecast');
   if(state.screen === 'wound' && state.currentWound?.id === woundId) render();
   else openWound(woundId);
 }
-function askClinicalDetails(){
-  return new Promise(resolve => {
-    openModal(`
-      <h2>Clinical details</h2>
-      <p class="muted" style="margin:0 0 10px">Optional — but improves accuracy</p>
-      <label class="label">Pain (0–10)</label>
-      <div class="slider-row">
-        <input id="c_pain" type="range" min="0" max="10" value="0" oninput="document.getElementById('pain_val').textContent=this.value">
-        <b id="pain_val">0</b>
-      </div>
-      <label class="label">Exudate</label>
-      <select id="c_exudate"><option value="">—</option><option>none</option><option>low</option><option>moderate</option><option>high</option></select>
-      <label class="label">Odor</label>
-      <select id="c_odor"><option value="">—</option><option>none</option><option>mild</option><option>strong</option></select>
-      <label class="label">Periwound skin</label>
-      <select id="c_periwound"><option value="">—</option><option>normal</option><option>erythema</option><option>macerated</option><option>callus</option><option>edema</option></select>
-      <div class="row" style="gap:8px">
-        <div style="flex:1"><label class="label">Undermining (cm)</label><input id="c_under" type="number" step="0.1" placeholder="0"></div>
-        <div style="flex:1"><label class="label">Tunneling (cm)</label><input id="c_tunnel" type="number" step="0.1" placeholder="0"></div>
-      </div>
-      <label class="label">Dressing applied</label>
-      <select id="c_dressing"><option value="">—</option><option>Foam</option><option>Hydrocolloid</option><option>Hydrogel</option><option>Alginate</option><option>Silver</option><option>Honey</option><option>Film</option><option>Gauze</option><option>Negative pressure</option></select>
-      <label class="label">Debridement</label>
-      <select id="c_debride"><option value="">—</option><option>None</option><option>Sharp</option><option>Enzymatic</option><option>Autolytic</option><option>Mechanical</option></select>
-      <label class="label">Notes</label><textarea id="c_notes" placeholder="Any observations…"></textarea>
-      <div style="height:14px"></div>
-      <div class="row" style="gap:8px">
-        <button class="btn sec" onclick="cancelClinical()" style="flex:1">Cancel</button>
-        <button class="btn" onclick="saveClinical()" style="flex:2">Save assessment</button>
-      </div>`);
-    window.cancelClinical = () => { closeModal(); resolve(null); };
-    window.saveClinical = () => {
-      const data = {
-        pain: parseInt($('#c_pain').value),
-        exudate: $('#c_exudate').value || null,
-        odor: $('#c_odor').value || null,
-        periwound: $('#c_periwound').value || null,
-        underminingCm: $('#c_under').value ? parseFloat($('#c_under').value) : null,
-        tunnelingCm: $('#c_tunnel').value ? parseFloat($('#c_tunnel').value) : null,
-        dressings: $('#c_dressing').value || null,
-        debridement: $('#c_debride').value || null,
-        notes: $('#c_notes').value.trim() || null,
-      };
-      closeModal(); resolve(data);
-    };
-  });
+async function editClinical(assessmentId){
+  const allAss = await DB.all('assessments');
+  const a = allAss.find(x => x.id === assessmentId);
+  if(!a){ toast('Not found'); return; }
+  openModal(`
+    <h2>Edit clinical details</h2>
+    <p class="muted" style="margin:0 0 10px">Fill in what you observed</p>
+    <label class="label">Pain (0–10)</label>
+    <div class="slider-row">
+      <input id="e_pain" type="range" min="0" max="10" value="${a.pain ?? 0}" oninput="document.getElementById('e_pain_val').textContent=this.value">
+      <b id="e_pain_val">${a.pain ?? 0}</b>
+    </div>
+    <label class="label">Exudate</label>
+    <select id="e_exudate"><option value="">—</option><option ${a.exudate==='none'?'selected':''}>none</option><option ${a.exudate==='low'?'selected':''}>low</option><option ${a.exudate==='moderate'?'selected':''}>moderate</option><option ${a.exudate==='high'?'selected':''}>high</option></select>
+    <label class="label">Odor</label>
+    <select id="e_odor"><option value="">—</option><option ${a.odor==='none'?'selected':''}>none</option><option ${a.odor==='mild'?'selected':''}>mild</option><option ${a.odor==='strong'?'selected':''}>strong</option></select>
+    <label class="label">Periwound skin</label>
+    <select id="e_periwound"><option value="">—</option><option ${a.periwound==='normal'?'selected':''}>normal</option><option ${a.periwound==='erythema'?'selected':''}>erythema</option><option ${a.periwound==='macerated'?'selected':''}>macerated</option><option ${a.periwound==='callus'?'selected':''}>callus</option><option ${a.periwound==='edema'?'selected':''}>edema</option></select>
+    <div class="row" style="gap:8px">
+      <div style="flex:1"><label class="label">Undermining (cm)</label><input id="e_under" type="number" step="0.1" value="${a.underminingCm ?? ''}"></div>
+      <div style="flex:1"><label class="label">Tunneling (cm)</label><input id="e_tunnel" type="number" step="0.1" value="${a.tunnelingCm ?? ''}"></div>
+    </div>
+    <label class="label">Dressing applied</label>
+    <select id="e_dressing"><option value="">—</option>${['Foam','Hydrocolloid','Hydrogel','Alginate','Silver','Honey','Film','Gauze','Negative pressure'].map(d=>`<option ${a.dressings===d?'selected':''}>${d}</option>`).join('')}</select>
+    <label class="label">Debridement</label>
+    <select id="e_debride"><option value="">—</option>${['None','Sharp','Enzymatic','Autolytic','Mechanical'].map(d=>`<option ${a.debridement===d?'selected':''}>${d}</option>`).join('')}</select>
+    <label class="label">Notes</label><textarea id="e_notes">${esc(a.notes || '')}</textarea>
+    <div style="height:14px"></div>
+    <button class="btn" onclick="saveClinicalEdit('${assessmentId}')">Save changes</button>`);
+}
+async function saveClinicalEdit(assessmentId){
+  const allAss = await DB.all('assessments');
+  const a = allAss.find(x => x.id === assessmentId);
+  if(!a){ toast('Not found'); return; }
+  a.pain = parseInt($('#e_pain').value);
+  a.exudate = $('#e_exudate').value || null;
+  a.odor = $('#e_odor').value || null;
+  a.periwound = $('#e_periwound').value || null;
+  a.underminingCm = $('#e_under').value ? parseFloat($('#e_under').value) : null;
+  a.tunnelingCm = $('#e_tunnel').value ? parseFloat($('#e_tunnel').value) : null;
+  a.dressings = $('#e_dressing').value || null;
+  a.debridement = $('#e_debride').value || null;
+  a.notes = $('#e_notes').value.trim() || null;
+  await DB.put('assessments', a);
+  closeModal(); toast('Updated'); render();
 }
 function loadImage(blob){ return new Promise((res,rej)=>{ const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(blob); }); }
 
-/* ═══════════ AI PIPELINE ═══════════ */
+/* AI pipeline (unchanged from v7) */
 async function analyzeWound(img, patient, markerMm, onStep){
   const step = (msg,pct) => onStep && onStep({msg,pct});
   const MAX = 1024;
@@ -1643,13 +1395,11 @@ async function analyzeWound(img, patient, markerMm, onStep){
   const ctx = canvas.getContext('2d', {willReadFrequently:true});
   ctx.drawImage(img, 0, 0, W, H);
   const data = ctx.getImageData(0, 0, W, H).data;
-
   step('Detecting marker…', 15);
   const marker = detectMarker(data, W, H);
   const calibrated = !!marker;
   const cmPerPx = marker ? (markerMm/10)/marker.sidePx : 15/W;
-
-  step('Segmenting wound…', 35);
+  step('Segmenting…', 35);
   let mask;
   if(state.aiReady){
     try{
@@ -1661,27 +1411,19 @@ async function analyzeWound(img, patient, markerMm, onStep){
       for(let i = 0; i < 256*256; i++) raw[i] = maskData[i] > 0.5 ? 1 : 0;
       const largest = largestComponent(raw, 256, 256);
       mask = new Uint8Array(W*H);
-      for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
-        mask[y*W+x] = largest[Math.floor(y*256/H)*256 + Math.floor(x*256/W)];
-      }
+      for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) mask[y*W+x] = largest[Math.floor(y*256/H)*256 + Math.floor(x*256/W)];
     } catch(e){ mask = segmentWoundFallback(data, W, H); }
   } else mask = segmentWoundFallback(data, W, H);
-
   const maskPx = mask.reduce((a,b)=>a + (b ? 1 : 0), 0);
   if(maskPx < 50) throw new Error('No wound detected');
-
   let minX = W, minY = H, maxX = 0, maxY = 0;
   for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
-    if(mask[y*W+x]){
-      if(x < minX) minX = x; if(x > maxX) maxX = x;
-      if(y < minY) minY = y; if(y > maxY) maxY = y;
-    }
+    if(mask[y*W+x]){ if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; }
   }
   const bboxW = maxX - minX + 1, bboxH = maxY - minY + 1;
   const areaCm2 = +(maskPx * cmPerPx * cmPerPx).toFixed(2);
   const lengthCm = +(bboxH * cmPerPx).toFixed(2);
   const widthCm = +(bboxW * cmPerPx).toFixed(2);
-
   let perimPx = 0;
   for(let y = 1; y < H-1; y++) for(let x = 1; x < W-1; x++){
     const i = y*W + x;
@@ -1691,56 +1433,36 @@ async function analyzeWound(img, patient, markerMm, onStep){
   const circularity = perimeterCm > 0 ? (4 * Math.PI * areaCm2) / (perimeterCm * perimeterCm) : 0;
   const elongation = bboxW > 0 ? Math.max(bboxW, bboxH) / Math.min(bboxW, bboxH) : 1;
   const edgeIrregularity = maskPx < 4 ? 1 : Math.max(1, perimPx / (2 * Math.sqrt(Math.PI * maskPx)));
-
   step('Classifying tissue…', 70);
   const tissue = classifyTissueColor(data, W, H, mask);
-
-  step('Infection analysis…', 88);
+  step('Infection…', 88);
   const infection = estimateInfection(data, W, H, mask, minX, minY, maxX, maxY, tissue);
   const healingIndex = computeHealingIndex({area:areaCm2, tissue, infection, patient});
-
   step('Done', 100);
-  return {
-    areaCm2, perimeterCm, lengthCm, widthCm, depthCm:null, volumeCm3:null,
-    tissue, infection, healingIndex, calibrated,
-    circularity:+circularity.toFixed(3),
-    elongation:+elongation.toFixed(2),
-    edgeIrregularity:+edgeIrregularity.toFixed(2)
-  };
+  return {areaCm2, perimeterCm, lengthCm, widthCm, depthCm:null, volumeCm3:null, tissue, infection, healingIndex, calibrated,
+    circularity:+circularity.toFixed(3), elongation:+elongation.toFixed(2), edgeIrregularity:+edgeIrregularity.toFixed(2)};
 }
 function segmentWoundFallback(data, W, H){
   const n = W*H;
   const L = new Float32Array(n);
-  for(let i = 0; i < n; i++){
-    const r = data[i*4], g = data[i*4+1], b = data[i*4+2];
-    L[i] = 0.299*r + 0.587*g + 0.114*b;
-  }
+  for(let i = 0; i < n; i++){ const r = data[i*4], g = data[i*4+1], b = data[i*4+2]; L[i] = 0.299*r + 0.587*g + 0.114*b; }
   const bg = boxBlur(L, W, H, 24);
   const mask = new Uint8Array(n);
-  for(let i = 0; i < n; i++){ if(bg[i] - L[i] > 12) mask[i] = 1; }
-  let m = morphClose(mask, W, H, 4);
-  m = morphOpen(m, W, H, 3);
+  for(let i = 0; i < n; i++) if(bg[i] - L[i] > 12) mask[i] = 1;
+  let m = morphClose(mask, W, H, 4); m = morphOpen(m, W, H, 3);
   return largestComponent(m, W, H);
 }
 function boxBlur(src, W, H, r){
   const tmp = new Float32Array(W*H), out = new Float32Array(W*H);
   for(let y = 0; y < H; y++){
-    let sum = 0, cnt = 0;
-    for(let x = -r; x <= r; x++){ const xx = Math.max(0, Math.min(W-1, x)); sum += src[y*W+xx]; cnt++; }
-    for(let x = 0; x < W; x++){
-      tmp[y*W+x] = sum/cnt;
-      const xr = Math.min(W-1, x+r), xl = Math.max(0, x-r-1);
-      sum += src[y*W+xr] - src[y*W+xl];
-    }
+    let s = 0, c = 0;
+    for(let x = -r; x <= r; x++){ const xx = Math.max(0, Math.min(W-1, x)); s += src[y*W+xx]; c++; }
+    for(let x = 0; x < W; x++){ tmp[y*W+x] = s/c; const xr = Math.min(W-1, x+r), xl = Math.max(0, x-r-1); s += src[y*W+xr] - src[y*W+xl]; }
   }
   for(let x = 0; x < W; x++){
-    let sum = 0, cnt = 0;
-    for(let y = -r; y <= r; y++){ const yy = Math.max(0, Math.min(H-1, y)); sum += tmp[yy*W+x]; cnt++; }
-    for(let y = 0; y < H; y++){
-      out[y*W+x] = sum/cnt;
-      const yr = Math.min(H-1, y+r), yl = Math.max(0, y-r-1);
-      sum += tmp[yr*W+x] - tmp[yl*W+x];
-    }
+    let s = 0, c = 0;
+    for(let y = -r; y <= r; y++){ const yy = Math.max(0, Math.min(H-1, y)); s += tmp[yy*W+x]; c++; }
+    for(let y = 0; y < H; y++){ out[y*W+x] = s/c; const yr = Math.min(H-1, y+r), yl = Math.max(0, y-r-1); s += tmp[yr*W+x] - tmp[yl*W+x]; }
   }
   return out;
 }
@@ -1749,28 +1471,28 @@ function morphOpen(m, W, H, r){ return dilate(erode(m, W, H, r), W, H, r); }
 function dilate(mask, W, H, r){
   const tmp = new Uint8Array(W*H), out = new Uint8Array(W*H);
   for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
-    let any = 0;
-    for(let dx = -r; dx <= r; dx++){ const xx = x+dx; if(xx >= 0 && xx < W && mask[y*W+xx]){ any = 1; break; } }
-    tmp[y*W+x] = any;
+    let a = 0;
+    for(let dx = -r; dx <= r; dx++){ const xx = x+dx; if(xx >= 0 && xx < W && mask[y*W+xx]){ a = 1; break; } }
+    tmp[y*W+x] = a;
   }
   for(let x = 0; x < W; x++) for(let y = 0; y < H; y++){
-    let any = 0;
-    for(let dy = -r; dy <= r; dy++){ const yy = y+dy; if(yy >= 0 && yy < H && tmp[yy*W+x]){ any = 1; break; } }
-    out[y*W+x] = any;
+    let a = 0;
+    for(let dy = -r; dy <= r; dy++){ const yy = y+dy; if(yy >= 0 && yy < H && tmp[yy*W+x]){ a = 1; break; } }
+    out[y*W+x] = a;
   }
   return out;
 }
 function erode(mask, W, H, r){
   const tmp = new Uint8Array(W*H), out = new Uint8Array(W*H);
   for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
-    let all = 1;
-    for(let dx = -r; dx <= r; dx++){ const xx = x+dx; if(xx < 0 || xx >= W || !mask[y*W+xx]){ all = 0; break; } }
-    tmp[y*W+x] = all;
+    let a = 1;
+    for(let dx = -r; dx <= r; dx++){ const xx = x+dx; if(xx < 0 || xx >= W || !mask[y*W+xx]){ a = 0; break; } }
+    tmp[y*W+x] = a;
   }
   for(let x = 0; x < W; x++) for(let y = 0; y < H; y++){
-    let all = 1;
-    for(let dy = -r; dy <= r; dy++){ const yy = y+dy; if(yy < 0 || yy >= H || !tmp[yy*W+x]){ all = 0; break; } }
-    out[y*W+x] = all;
+    let a = 1;
+    for(let dy = -r; dy <= r; dy++){ const yy = y+dy; if(yy < 0 || yy >= H || !tmp[yy*W+x]){ a = 0; break; } }
+    out[y*W+x] = a;
   }
   return out;
 }
@@ -1802,35 +1524,28 @@ function detectMarker(data, W, H){
   const gray = new Uint8Array(W*H);
   for(let i = 0; i < W*H; i++) gray[i] = (data[i*4]*0.299 + data[i*4+1]*0.587 + data[i*4+2]*0.114) | 0;
   const integral = new Float64Array((W+1)*(H+1));
-  for(let y = 0; y < H; y++){
-    let rs = 0;
-    for(let x = 0; x < W; x++){ rs += gray[y*W+x]; integral[(y+1)*(W+1)+(x+1)] = integral[y*(W+1)+(x+1)] + rs; }
-  }
-  const rectSum = (x0,y0,x1,y1) => integral[(y1+1)*(W+1)+(x1+1)] - integral[y0*(W+1)+(x1+1)] - integral[(y1+1)*(W+1)+x0] + integral[y0*(W+1)+x0];
+  for(let y = 0; y < H; y++){ let rs = 0; for(let x = 0; x < W; x++){ rs += gray[y*W+x]; integral[(y+1)*(W+1)+(x+1)] = integral[y*(W+1)+(x+1)] + rs; } }
+  const rS = (x0,y0,x1,y1) => integral[(y1+1)*(W+1)+(x1+1)] - integral[y0*(W+1)+(x1+1)] - integral[(y1+1)*(W+1)+x0] + integral[y0*(W+1)+x0];
   const bin = new Uint8Array(W*H); const r = 12;
   for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){
     const x0 = Math.max(0,x-r), y0 = Math.max(0,y-r), x1 = Math.min(W-1,x+r), y1 = Math.min(H-1,y+r);
     const area = (x1-x0+1)*(y1-y0+1);
-    const mean = rectSum(x0,y0,x1,y1) / area;
+    const mean = rS(x0,y0,x1,y1) / area;
     bin[y*W+x] = gray[y*W+x] < mean - 8 ? 1 : 0;
   }
-  const labels = new Int32Array(W*H);
-  const comps = []; let cur = 0;
-  const stack = [];
+  const labels = new Int32Array(W*H); const comps = []; let cur = 0; const stack = [];
   for(let i = 0; i < W*H; i++){
     if(bin[i] && !labels[i]){
-      cur++;
-      stack.length = 0; stack.push(i); labels[i] = cur;
+      cur++; stack.length = 0; stack.push(i); labels[i] = cur;
       let minX = W, minY = H, maxX = 0, maxY = 0, count = 0;
       while(stack.length){
         const p = stack.pop(); count++;
         const x = p % W, y = (p / W) | 0;
-        if(x < minX) minX = x; if(x > maxX) maxX = x;
-        if(y < minY) minY = y; if(y > maxY) maxY = y;
-        if(x > 0 && bin[p-1] && !labels[p-1]){ labels[p-1] = cur; stack.push(p-1); }
-        if(x < W-1 && bin[p+1] && !labels[p+1]){ labels[p+1] = cur; stack.push(p+1); }
-        if(y > 0 && bin[p-W] && !labels[p-W]){ labels[p-W] = cur; stack.push(p-W); }
-        if(y < H-1 && bin[p+W] && !labels[p+W]){ labels[p+W] = cur; stack.push(p+W); }
+        if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y;
+        if(x>0&&bin[p-1]&&!labels[p-1]){labels[p-1]=cur;stack.push(p-1);}
+        if(x<W-1&&bin[p+1]&&!labels[p+1]){labels[p+1]=cur;stack.push(p+1);}
+        if(y>0&&bin[p-W]&&!labels[p-W]){labels[p-W]=cur;stack.push(p-W);}
+        if(y<H-1&&bin[p+W]&&!labels[p+W]){labels[p+W]=cur;stack.push(p+W);}
       }
       comps.push({cur, count, minX, minY, maxX, maxY});
     }
@@ -1840,10 +1555,10 @@ function detectMarker(data, W, H){
     const w = c.maxX - c.minX + 1, h = c.maxY - c.minY + 1;
     if(w < 30 || h < 30) continue;
     if(w > W*0.6 || h > H*0.6) continue;
-    const aspect = w/h; if(aspect < 0.75 || aspect > 1.35) continue;
-    const fill = c.count/(w*h); if(fill < 0.55 || fill > 0.98) continue;
-    const score = Math.min(w,h)*fill;
-    if(score > bestScore){ bestScore = score; best = {sidePx:(w+h)/2, bbox:c}; }
+    const a = w/h; if(a < 0.75 || a > 1.35) continue;
+    const f = c.count/(w*h); if(f < 0.55 || f > 0.98) continue;
+    const s = Math.min(w,h)*f;
+    if(s > bestScore){ bestScore = s; best = {sidePx:(w+h)/2, bbox:c}; }
   }
   return best;
 }
@@ -1860,8 +1575,8 @@ function classifyTissueColor(data, W, H, mask){
   return tissue;
 }
 function classifyPixelColor(r,g,b){
-  const lum = 0.299*r + 0.587*g + 0.114*b;
-  if(lum < 55) return 'necrosis';
+  const l = 0.299*r + 0.587*g + 0.114*b;
+  if(l < 55) return 'necrosis';
   if(r > 140 && g > 120 && b < 130 && Math.abs(r-g) < 50) return 'slough';
   if(r > 140 && g < r*0.75 && b < r*0.75) return 'granulation';
   if(r > 170 && g > 120 && b > 120) return 'epithelial';
@@ -1871,18 +1586,18 @@ function estimateInfection(data, W, H, mask, minX, minY, maxX, maxY, tissue){
   const pad = Math.max(12, Math.round((maxX-minX)*0.35));
   const x0 = Math.max(0, minX-pad), x1 = Math.min(W-1, maxX+pad);
   const y0 = Math.max(0, minY-pad), y1 = Math.min(H-1, maxY+pad);
-  let redPx = 0, skinPx = 0;
+  let red = 0, skin = 0;
   for(let y = y0; y <= y1; y++) for(let x = x0; x <= x1; x++){
     const i = y*W+x;
     if(mask[i]) continue;
-    skinPx++;
+    skin++;
     const r = data[i*4], g = data[i*4+1], b = data[i*4+2];
-    if(r > 150 && r-g > 35 && r-b > 35) redPx++;
+    if(r > 150 && r-g > 35 && r-b > 35) red++;
   }
-  const erythema = skinPx ? redPx/skinPx : 0;
-  const slough = (tissue.slough||0)/100, gran = (tissue.granulation||0)/100;
-  const tissueSignal = Math.max(0, slough - gran*0.6);
-  return +Math.min(1, erythema*0.8 + tissueSignal*0.4).toFixed(3);
+  const erythema = skin ? red/skin : 0;
+  const sl = (tissue.slough||0)/100, gr = (tissue.granulation||0)/100;
+  const sig = Math.max(0, sl - gr*0.6);
+  return +Math.min(1, erythema*0.8 + sig*0.4).toFixed(3);
 }
 function computeHealingIndex({area, tissue, infection, patient}){
   let risk = 0;
@@ -1895,29 +1610,13 @@ function computeHealingIndex({area, tissue, infection, patient}){
   return Math.min(1, +risk.toFixed(2));
 }
 
-/* ═══════════ EXPORTS ═══════════ */
-async function saveFileNative(base64, filename, mime){
-  if(state.native && window.yultoDB.saveAndShareBinary){
-    try{
-      await window.yultoDB.saveAndShareBinary(base64.split(',')[1] || base64, filename, mime);
-      return true;
-    } catch(e){ console.warn('native save failed', e); }
-  }
-  return false;
-}
+/* Exports */
 function downloadBlob(blob, filename){
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = filename; document.body.appendChild(a); a.click();
   setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 2000);
 }
-function getBase64FromBlob(blob){
-  return new Promise(res => {
-    const fr = new FileReader();
-    fr.onload = () => res(fr.result);
-    fr.readAsDataURL(blob);
-  });
-}
-
+function getBase64FromBlob(blob){ return new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); }); }
 async function exportFHIR(woundId){
   const w = await DB.get('wounds', woundId);
   const p = await DB.get('patients', w.patientId);
@@ -1925,42 +1624,31 @@ async function exportFHIR(woundId){
   if(!ass.length){ toast('No assessments'); return; }
   const latest = ass[ass.length-1];
   const bundle = {resourceType:'Bundle', type:'collection', timestamp:new Date().toISOString(),
-    entry:[
-      {resource:{resourceType:'Patient', id:p.id, name:[{text:p.name}], identifier:p.mrn?[{value:p.mrn}]:undefined}},
-      {resource:{resourceType:'Observation', id:latest.id, status:'final',
-        code:{text:'Wound measurement'}, subject:{reference:'Patient/'+p.id},
-        effectiveDateTime:new Date(latest.createdAt).toISOString(),
+    entry:[{resource:{resourceType:'Patient', id:p.id, name:[{text:p.name}]}},
+      {resource:{resourceType:'Observation', id:latest.id, status:'final', code:{text:'Wound measurement'},
+        subject:{reference:'Patient/'+p.id}, effectiveDateTime:new Date(latest.createdAt).toISOString(),
         component:[
           latest.areaCm2 != null ? {code:{text:'Area'}, valueQuantity:{value:latest.areaCm2, unit:'cm2'}} : null,
           latest.perimeterCm != null ? {code:{text:'Perimeter'}, valueQuantity:{value:latest.perimeterCm, unit:'cm'}} : null,
-          latest.expectedDays != null ? {code:{text:'Expected healing days'}, valueQuantity:{value:latest.expectedDays, unit:'d'}} : null,
-        ].filter(Boolean)}},
-    ]};
+        ].filter(Boolean)}}]};
   const json = JSON.stringify(bundle, null, 2);
-  const filename = 'opsin-fhir-'+woundId+'.json';
+  const filename = 'yulto-fhir-'+woundId+'.json';
   if(state.native && window.yultoDB.saveAndShareFile){
-    try { await window.yultoDB.saveAndShareFile(btoa(unescape(encodeURIComponent(json))), filename, 'application/fhir+json'); toast('FHIR exported'); return; } catch(e){}
+    try{ await window.yultoDB.saveAndShareFile(btoa(unescape(encodeURIComponent(json))), filename, 'application/fhir+json'); toast('FHIR saved to Documents/YULTO_CARE'); return; }catch(e){}
   }
   downloadBlob(new Blob([json],{type:'application/fhir+json'}), filename);
-  toast('FHIR R4 exported');
+  toast('FHIR exported');
 }
 async function exportCSV(woundId){
   const w = await DB.get('wounds', woundId);
   const ass = (await DB.all('assessments','woundId',woundId)).sort((a,b)=>a.createdAt-b.createdAt);
   if(!ass.length){ toast('No assessments'); return; }
-  const headers = ['Date','Area cm2','Perimeter cm','Circularity','Infection','HealingIndex','Pain','Exudate','Odor','Periwound','Dressing','Debridement','Expected days'];
-  const rows = ass.map(a => [
-    new Date(a.createdAt).toISOString(),
-    a.areaCm2 ?? '', a.perimeterCm ?? '', a.circularity ?? '',
-    a.infection ?? '', a.healingIndex ?? '',
-    a.pain ?? '', a.exudate ?? '', a.odor ?? '', a.periwound ?? '',
-    (a.dressings || '').replace(/,/g,';'), (a.debridement || '').replace(/,/g,';'),
-    a.expectedDays ?? ''
-  ]);
+  const headers = ['Date','Area cm2','Perimeter cm','Infection','Pain','Exudate','Odor','Dressing','Debridement','Expected days'];
+  const rows = ass.map(a => [new Date(a.createdAt).toISOString(), a.areaCm2??'', a.perimeterCm??'', a.infection??'', a.pain??'', a.exudate??'', a.odor??'', (a.dressings||'').replace(/,/g,';'), (a.debridement||'').replace(/,/g,';'), a.expectedDays??'']);
   const csv = [headers.join(','), ...rows.map(r=>r.join(','))].join('\n');
-  const filename = 'opsin-'+w.label.replace(/[^a-z0-9]/gi,'_')+'.csv';
+  const filename = 'yulto-'+w.label.replace(/[^a-z0-9]/gi,'_')+'.csv';
   if(state.native && window.yultoDB.saveAndShareFile){
-    try { await window.yultoDB.saveAndShareFile(btoa(unescape(encodeURIComponent(csv))), filename, 'text/csv'); toast('CSV exported'); return; } catch(e){}
+    try{ await window.yultoDB.saveAndShareFile(btoa(unescape(encodeURIComponent(csv))), filename, 'text/csv'); toast('CSV saved to Documents/YULTO_CARE'); return; }catch(e){}
   }
   downloadBlob(new Blob([csv],{type:'text/csv'}), filename);
   toast('CSV exported');
@@ -1970,25 +1658,12 @@ async function shareReport(woundId){
   const p = await DB.get('patients', w.patientId);
   const ass = (await DB.all('assessments','woundId',woundId)).sort((a,b)=>a.createdAt-b.createdAt);
   if(!ass.length){ toast('No assessments'); return; }
-  const latest = ass[ass.length-1];
-  const text = `OPSIN MEDICALS report
-Patient: ${p.name}${p.mrn?' ('+p.mrn+')':''}
-Wound: ${w.label} — ${w.type?.replace(/_/g,' ')}${w.location?' at '+w.location:''}
-
-Latest (${fmtDate(latest.createdAt)}):
-• Area: ${latest.areaCm2 ? latest.areaCm2+' cm²' : '—'}
-• Perimeter: ${latest.perimeterCm ? latest.perimeterCm+' cm' : '—'}
-• Infection risk: ${(latest.infection*100).toFixed(0)}%
-• Expected healing: ${latest.expectedDays || '—'} days
-${latest.pain != null ? '• Pain: '+latest.pain+'/10' : ''}
-
-${ass.length} assessment(s) total.`;
-  if(state.native && window.yultoDB.shareText) await window.yultoDB.shareText({title:'OPSIN MEDICALS report', text});
-  else if(navigator.share) await navigator.share({title:'OPSIN MEDICALS report', text});
-  else { await navigator.clipboard.writeText(text); toast('Report copied'); }
+  const l = ass[ass.length-1];
+  const text = `YULTO CARE report\nPatient: ${p.name}${p.mrn?' ('+p.mrn+')':''}\nWound: ${w.label}\n\nLatest (${fmtDate(l.createdAt)}):\n• Area: ${l.areaCm2 ? l.areaCm2+' cm²' : '—'}\n• Infection: ${(l.infection*100).toFixed(0)}%\n• Expected: ${l.expectedDays || '—'} days\n\n${ass.length} assessment(s).`;
+  if(state.native && window.yultoDB.shareText) await window.yultoDB.shareText({title:'YULTO CARE report', text});
+  else if(navigator.share) await navigator.share({title:'YULTO CARE report', text});
+  else { await navigator.clipboard.writeText(text); toast('Copied'); }
 }
-
-/* ═══════════ PDF (OPSIN branded A4) ═══════════ */
 async function exportWoundPDF(woundId){
   const w = await DB.get('wounds', woundId);
   const p = await DB.get('patients', w.patientId);
@@ -1996,288 +1671,266 @@ async function exportWoundPDF(woundId){
   const ass = (await DB.all('assessments','woundId',woundId)).sort((a,b)=>a.createdAt-b.createdAt);
   if(!ass.length){ toast('No assessments'); return; }
   toast('Generating PDF…', 4000);
-
   const {jsPDF} = window.jspdf;
   const doc = new jsPDF({unit:'mm', format:'a4'});
   const PW = 210, PH = 297, M = 18;
-
-  // ── Header band ──
-  doc.setFillColor(37,99,235);
-  doc.rect(0, 0, PW, 32, 'F');
-  doc.setFillColor(6,182,212);
-  doc.rect(0, 26, PW, 6, 'F');
-
-  doc.setTextColor(255,255,255);
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(22);
-  doc.text('OPSIN MEDICALS', M, 15);
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(9);
-  doc.text('by Yulto Care', M, 22);
-
-  doc.setFontSize(8);
-  doc.text('Clinical Wound Assessment Report', PW-M, 13, {align:'right'});
-  doc.text('Generated: '+new Date().toLocaleString(), PW-M, 19, {align:'right'});
-
+  doc.setFillColor(37,99,235); doc.rect(0, 0, PW, 32, 'F');
+  doc.setFillColor(6,182,212); doc.rect(0, 26, PW, 6, 'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(22);
+  doc.text('YULTO CARE', M, 15);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('Clinical Wound Assessment', PW-M, 15, {align:'right'});
+  doc.text('Generated: '+new Date().toLocaleString(), PW-M, 21, {align:'right'});
   let y = 44;
-
-  // ── Patient block ──
-  doc.setFillColor(241,245,249);
-  doc.rect(M, y-4, PW-M*2, 30, 'F');
-  doc.setTextColor(15,23,42);
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(12);
+  doc.setFillColor(241,245,249); doc.rect(M, y-4, PW-M*2, 30, 'F');
+  doc.setTextColor(15,23,42); doc.setFont('helvetica','bold'); doc.setFontSize(12);
   doc.text(p?.name || 'Unknown patient', M+4, y+4);
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(9);
-  doc.setTextColor(71,85,105);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(71,85,105);
   doc.text('MRN: '+(p?.mrn || '—'), M+4, y+11);
   doc.text('DOB: '+(p?.dob || '—'), M+4, y+16);
   doc.text('Sex: '+(p?.sex || '—'), M+80, y+11);
-  const comorbidities = [];
-  if(p?.diabetes) comorbidities.push('Diabetes'+(p.hba1c?' (HbA1c '+p.hba1c+'%)':''));
-  if(p?.pvd) comorbidities.push('PVD');
-  if(p?.smoker) comorbidities.push('Smoker');
-  doc.text('Comorbidities: '+(comorbidities.length?comorbidities.join(', '):'None'), M+80, y+16);
+  const cm = []; if(p?.diabetes) cm.push('DM'); if(p?.pvd) cm.push('PVD'); if(p?.smoker) cm.push('Smoker');
+  doc.text('Comorbidities: '+(cm.length?cm.join(', '):'None'), M+80, y+16);
   y += 36;
-
-  // ── Wound block ──
-  doc.setFillColor(219,234,254);
-  doc.rect(M, y-4, PW-M*2, 18, 'F');
-  doc.setTextColor(30,64,175);
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(11);
+  doc.setFillColor(219,234,254); doc.rect(M, y-4, PW-M*2, 18, 'F');
+  doc.setTextColor(30,64,175); doc.setFont('helvetica','bold'); doc.setFontSize(11);
   doc.text('Wound: '+(w.label || '—'), M+4, y+3);
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(9);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
   doc.text('Type: '+(w.type||'—').replace(/_/g,' ')+' · Location: '+(w.location||'—')+' · Status: '+(w.status||'—'), M+4, y+10);
   y += 24;
-
-  // ── Latest assessment ──
   const latest = ass[ass.length-1];
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(13);
-  doc.setTextColor(37,99,235);
-  doc.text('Latest Assessment', M, y);
-  y += 2;
-  doc.setDrawColor(37,99,235);
-  doc.setLineWidth(0.6);
-  doc.line(M, y, M+40, y);
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(37,99,235);
+  doc.text('Latest Assessment', M, y); y += 3;
+  doc.setDrawColor(37,99,235); doc.setLineWidth(0.6); doc.line(M, y, M+40, y);
   y += 8;
-
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(9);
-  doc.setTextColor(71,85,105);
-  doc.text('Date: '+fmtDate(latest.createdAt), M, y);
-  y += 8;
-
-  const rows = [
-    ['Area', latest.areaCm2 ? latest.areaCm2+' cm²' : '—'],
-    ['Perimeter', latest.perimeterCm ? latest.perimeterCm+' cm' : '—'],
-    ['Circularity', latest.circularity ? (latest.circularity*100).toFixed(0)+'%' : '—'],
-    ['Infection risk', latest.infection != null ? (latest.infection*100).toFixed(0)+'%' : '—'],
-    ['Healing index', latest.healingIndex != null ? (latest.healingIndex*100).toFixed(0)+'%' : '—'],
-    ['Expected healing', latest.expectedDays ? latest.expectedDays+' days' : '—'],
-    ['Range', (latest.optimisticDays && latest.pessimisticDays) ? latest.optimisticDays+'–'+latest.pessimisticDays+' days' : '—'],
-    ['Pain', latest.pain != null ? latest.pain+'/10' : '—'],
-    ['Exudate', latest.exudate || '—'],
-    ['Odor', latest.odor || '—'],
-    ['Periwound', latest.periwound || '—'],
-    ['Dressing', latest.dressings || '—'],
-    ['Debridement', latest.debridement || '—'],
-  ];
-
-  // Two-column layout
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(71,85,105);
+  doc.text('Date: '+fmtDate(latest.createdAt), M, y); y += 8;
+  const rows = [['Area', latest.areaCm2 ? latest.areaCm2+' cm²' : '—'],['Perimeter', latest.perimeterCm ? latest.perimeterCm+' cm' : '—'],['Circularity', latest.circularity ? (latest.circularity*100).toFixed(0)+'%' : '—'],['Infection risk', (latest.infection*100).toFixed(0)+'%'],['Expected healing', latest.expectedDays ? latest.expectedDays+' days' : '—'],['Pain', latest.pain != null ? latest.pain+'/10' : '—'],['Exudate', latest.exudate || '—'],['Dressing', latest.dressings || '—']];
   const colW = (PW - M*2) / 2;
-  doc.setFontSize(9);
   rows.forEach((r, i) => {
-    const col = i % 2;
-    const row = Math.floor(i / 2);
-    const rx = M + col * colW;
-    const ry = y + row * 7;
-    doc.setTextColor(100,116,139);
-    doc.setFont('helvetica','normal');
+    const col = i % 2, row = Math.floor(i / 2);
+    const rx = M + col * colW, ry = y + row * 7;
+    doc.setTextColor(100,116,139); doc.setFont('helvetica','normal');
     doc.text(r[0]+':', rx, ry);
-    doc.setTextColor(15,23,42);
-    doc.setFont('helvetica','bold');
+    doc.setTextColor(15,23,42); doc.setFont('helvetica','bold');
     doc.text(String(r[1]), rx + 34, ry);
   });
   y += Math.ceil(rows.length / 2) * 7 + 6;
-
-  // ── Tissue composition ──
-  if(latest.tissue && Object.keys(latest.tissue).length){
-    doc.setFont('helvetica','bold');
-    doc.setFontSize(11);
-    doc.setTextColor(37,99,235);
-    doc.text('Tissue Composition', M, y);
-    y += 6;
-    doc.setFont('helvetica','normal');
-    doc.setFontSize(9);
-    const tissueEntries = Object.entries(latest.tissue).filter(([k,v])=>v > 0);
-    tissueEntries.forEach(([k,v]) => {
-      doc.setTextColor(100,116,139);
-      doc.text('• '+k.charAt(0).toUpperCase()+k.slice(1)+':', M+2, y);
-      doc.setTextColor(15,23,42);
-      doc.setFont('helvetica','bold');
-      doc.text(v+'%', M+50, y);
-      doc.setFont('helvetica','normal');
-      y += 5;
+  if(latest.tissue){
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(37,99,235);
+    doc.text('Tissue Composition', M, y); y += 6;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    Object.entries(latest.tissue).filter(([k,v])=>v > 0).forEach(([k,v]) => {
+      doc.setTextColor(100,116,139); doc.text('• '+k.charAt(0).toUpperCase()+k.slice(1)+':', M+2, y);
+      doc.setTextColor(15,23,42); doc.setFont('helvetica','bold'); doc.text(v+'%', M+50, y);
+      doc.setFont('helvetica','normal'); y += 5;
     });
     y += 4;
   }
-
-  // ── Photo grid ──
   if(imgs.length){
     if(y > PH - 90){ doc.addPage(); y = M; }
-    doc.setFont('helvetica','bold');
-    doc.setFontSize(11);
-    doc.setTextColor(37,99,235);
-    doc.text('Photo History', M, y);
-    y += 6;
-
-    const thumbW = 54, thumbH = 54, gap = 6;
-    const cols = 3;
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(37,99,235);
+    doc.text('Photo History', M, y); y += 6;
+    const tw = 54, th = 54, gap = 6;
     let col = 0;
     for(const img of imgs.slice(-6)){
-      if(y + thumbH + 8 > PH - M){
-        doc.addPage(); y = M; col = 0;
-      }
+      if(y + th + 8 > PH - M){ doc.addPage(); y = M; col = 0; }
       const dataUrl = img.dataUrl || (img.blob ? await blobToDataURL(img.blob) : null);
       if(!dataUrl) continue;
-      const x = M + col * (thumbW + gap);
+      const x = M + col * (tw + gap);
       try{
-        doc.setDrawColor(226,232,240);
-        doc.setLineWidth(0.3);
-        doc.rect(x, y, thumbW, thumbH);
-        doc.addImage(dataUrl, 'JPEG', x+0.5, y+0.5, thumbW-1, thumbH-1);
+        doc.setDrawColor(226,232,240); doc.setLineWidth(0.3); doc.rect(x, y, tw, th);
+        doc.addImage(dataUrl, 'JPEG', x+0.5, y+0.5, tw-1, th-1);
       }catch(e){}
-      doc.setFontSize(7);
-      doc.setTextColor(100,116,139);
-      doc.text(fmtDate(img.createdAt), x, y+thumbH+4);
+      doc.setFontSize(7); doc.setTextColor(100,116,139);
+      doc.text(fmtDate(img.createdAt), x, y+th+4);
       col++;
-      if(col >= cols){ col = 0; y += thumbH + 10; }
+      if(col >= 3){ col = 0; y += th + 10; }
     }
-    y += thumbH + 10;
+    y += th + 10;
   }
-
-  // ── Footer ──
   const totalPages = doc.getNumberOfPages();
   for(let i = 1; i <= totalPages; i++){
     doc.setPage(i);
-    doc.setDrawColor(226,232,240);
-    doc.setLineWidth(0.3);
-    doc.line(M, PH-14, PW-M, PH-14);
-    doc.setFontSize(7);
-    doc.setTextColor(148,163,184);
-    doc.text('OPSIN MEDICALS · by Yulto Care', M, PH-9);
-    doc.text('For clinical reference only', PW/2, PH-9, {align:'center'});
+    doc.setDrawColor(226,232,240); doc.setLineWidth(0.3); doc.line(M, PH-14, PW-M, PH-14);
+    doc.setFontSize(7); doc.setTextColor(148,163,184);
+    doc.text('YULTO CARE · Clinical wound platform', M, PH-9);
     doc.text('Page '+i+' of '+totalPages, PW-M, PH-9, {align:'right'});
   }
-
-  const filename = 'opsin-'+((p?.name||'patient').replace(/[^a-z0-9]/gi,'_'))+'-'+fmtDate(latest.createdAt).replace(/[^a-z0-9]/gi,'-')+'.pdf';
-
-  // Save via native share sheet or fallback
+  const filename = 'yulto-'+((p?.name||'patient').replace(/[^a-z0-9]/gi,'_'))+'-'+fmtDate(latest.createdAt).replace(/[^a-z0-9]/gi,'-')+'.pdf';
   const pdfBlob = doc.output('blob');
   const base64 = await getBase64FromBlob(pdfBlob);
   if(state.native && window.yultoDB.saveAndShareBinary){
-    try{
-      await window.yultoDB.saveAndShareBinary(base64.split(',')[1], filename, 'application/pdf');
-      toast('PDF ready — pick where to save');
-      return;
-    }catch(e){ console.warn('native pdf share failed', e); }
+    try{ await window.yultoDB.saveAndShareBinary(base64.split(',')[1], filename, 'application/pdf'); toast('PDF saved to Documents/YULTO_CARE'); return; }catch(e){ console.warn('pdf native', e); }
   }
   downloadBlob(pdfBlob, filename);
   toast('PDF saved');
 }
-function blobToDataURL(blob){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob)})}
+function blobToDataURL(blob){ return new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); }); }
 
-/* ═══════════ HANDOUT ═══════════ */
+/* Handout */
 async function renderHandout(v){
   const p = state.currentPatient; if(!p) return go('patients');
-  const wounds = (await DB.all('wounds','patientId',p.id)).filter(w=>w.status !== 'healed');
-  const woundType = wounds[0]?.type || 'other';
-  const content = HANDOUT_CONTENT[woundType] || HANDOUT_CONTENT.other;
+  const wounds = (await DB.all('wounds','patientId',p.id)).filter(w => w.status !== 'healed');
+  const wt = wounds[0]?.type || 'other';
+  const c = HANDOUT_CONTENT[wt] || HANDOUT_CONTENT.other;
   v.innerHTML = `
     <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('patient')">← Back</button></div>
     <h1 class="title">Patient handout</h1>
     <p class="sub">${esc(p.name)}</p>
-    <div class="card" id="handoutCard">
-      <h2 style="color:var(--brand);margin-top:0">${content.title}</h2>
-      <p style="font-size:14px;margin-top:6px">${content.intro}</p>
+    <div class="card">
+      <h2 style="color:var(--brand);margin-top:0">${c.title}</h2>
+      <p style="font-size:14px;margin-top:6px">${c.intro}</p>
       <div class="muted" style="font-size:11px;font-weight:600;margin-top:14px">WHAT TO DO</div>
-      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${content.do.map(d=>`<li>${d}</li>`).join('')}</ul>
+      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${c.do.map(d=>`<li>${d}</li>`).join('')}</ul>
       <div class="muted" style="font-size:11px;font-weight:600;margin-top:10px">WHAT TO AVOID</div>
-      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${content.dont.map(d=>`<li>${d}</li>`).join('')}</ul>
+      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${c.dont.map(d=>`<li>${d}</li>`).join('')}</ul>
       <div class="muted" style="font-size:11px;font-weight:600;margin-top:10px">WARNING SIGNS</div>
-      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${content.warn.map(d=>`<li>${d}</li>`).join('')}</ul>
-      <p class="muted" style="font-size:11px;text-align:center;margin-top:16px">OPSIN MEDICALS · by Yulto Care · ${new Date().toLocaleDateString()}</p>
+      <ul style="padding-left:20px;font-size:14px;line-height:1.7">${c.warn.map(d=>`<li>${d}</li>`).join('')}</ul>
+      <p class="muted" style="font-size:11px;text-align:center;margin-top:16px">YULTO CARE · ${new Date().toLocaleDateString()}</p>
     </div>
-    <button class="btn sec" onclick="shareHandout('${esc(p.name)}', '${woundType}')">✉️ Share as text</button>`;
+    <button class="btn sec" onclick="shareHandout('${esc(p.name)}','${wt}')">✉️ Share as text</button>`;
 }
 const HANDOUT_CONTENT = {
-  diabetic_foot: {title:'Caring for your diabetic foot ulcer',intro:'A diabetic foot ulcer needs careful daily care to heal and to prevent infection.',do:['Keep weight off the wound — use your offloading boot as directed','Check your feet every day for new wounds or changes','Keep the wound clean and covered','Wear properly fitting shoes','Keep your blood sugar under control'],dont:['Do not walk barefoot','Do not cut corns or calluses yourself','Do not soak your feet for long periods'],warn:['New redness, warmth, or swelling','Foul smell or yellow/green discharge','Fever above 38°C','Black or dark tissue appearing']},
-  pressure_ulcer: {title:'Caring for your pressure ulcer',intro:'Pressure ulcers heal best when pressure is taken off the area.',do:['Change position every 2 hours in bed','Keep the skin clean and dry','Use the special mattress or cushion we provided','Eat protein-rich foods'],dont:['Do not lie or sit directly on the sore','Do not massage red areas'],warn:['The sore gets bigger or deeper','New redness or warmth','Discharge or bad smell','Fever']},
-  venous_ulcer: {title:'Caring for your venous leg ulcer',intro:'Venous ulcers heal faster when the leg is compressed and elevated.',do:['Wear your compression bandages as instructed','Elevate your leg above heart level when resting','Walk regularly','Keep the wound clean and dressed'],dont:['Do not stand still for long periods','Do not remove compression except to shower'],warn:['Increasing pain','New redness or warmth','Swelling that is getting worse','Fever']},
-  arterial_ulcer: {title:'Caring for your arterial ulcer',intro:'Arterial ulcers are caused by poor blood flow. Protect the limb and follow vascular advice.',do:['Keep the leg warm','Keep the wound clean and dressed','Rest the leg when it hurts','Stop smoking'],dont:['Do not elevate the leg above heart level','Do not use compression','Do not apply heat directly'],warn:['Sudden increase in pain','The foot turning pale, cold, or blue','New black tissue','Fever']},
-  surgical: {title:'Caring for your surgical wound',intro:'A surgical wound needs to stay clean to heal properly and avoid infection.',do:['Keep the wound clean and dry','Change dressings as instructed','Eat well and stay hydrated','Take pain medication as prescribed'],dont:['Do not soak in a bath or pool','Do not scratch or pick at the wound'],warn:['Fever above 38°C','Increasing redness, pain, or swelling','Discharge or bad smell','The wound opening up']},
-  burn: {title:'Caring for your burn',intro:'Burns need gentle care to prevent infection and scarring.',do:['Keep the burn clean and covered','Take pain relief as prescribed','Drink plenty of fluids','Protect the area from sun'],dont:['Do not apply butter, oil, or toothpaste','Do not burst blisters'],warn:['Fever','Increasing pain','Discharge or bad smell','The burn getting deeper']},
-  rash: {title:'Caring for your skin rash',intro:'Most rashes settle with gentle skin care and avoiding the cause.',do:['Keep the area clean and dry','Use mild, fragrance-free soap','Apply cream exactly as prescribed','Wear loose cotton clothing'],dont:['Do not use scented soaps or lotions','Do not scratch or rub'],warn:['Spreading rapidly','Blisters or open sores forming','Fever','Difficulty breathing']},
-  other: {title:'Caring for your wound',intro:'Follow these steps to help your wound heal and to prevent infection.',do:['Keep the wound clean and covered','Change dressings as instructed','Eat well and drink plenty of water'],dont:['Do not scratch or pick at the wound','Do not apply home remedies without asking us'],warn:['Fever','Increasing pain or redness','Discharge or bad smell','The wound getting bigger']},
+  diabetic_foot:{title:'Caring for your diabetic foot ulcer',intro:'A diabetic foot ulcer needs careful daily care to heal and prevent infection.',do:['Keep weight off the wound — use your offloading boot as directed','Check your feet every day','Keep the wound clean and covered','Wear properly fitting shoes','Keep blood sugar controlled'],dont:['Do not walk barefoot','Do not cut corns or calluses yourself','Do not soak your feet for long periods'],warn:['New redness, warmth, or swelling','Foul smell or discharge','Fever above 38°C','Black tissue appearing']},
+  pressure_ulcer:{title:'Caring for your pressure ulcer',intro:'Pressure ulcers heal best when pressure is taken off the area.',do:['Change position every 2 hours in bed','Keep skin clean and dry','Use the special mattress we provided','Eat protein-rich foods'],dont:['Do not lie or sit directly on the sore','Do not massage red areas'],warn:['Sore gets bigger or deeper','New redness or warmth','Discharge or bad smell','Fever']},
+  venous_ulcer:{title:'Caring for your venous leg ulcer',intro:'Venous ulcers heal faster when the leg is compressed and elevated.',do:['Wear your compression bandages as instructed','Elevate your leg above heart level','Walk regularly','Keep the wound clean and dressed'],dont:['Do not stand still for long periods','Do not remove compression except to shower'],warn:['Increasing pain','New redness or warmth','Worsening swelling','Fever']},
+  arterial_ulcer:{title:'Caring for your arterial ulcer',intro:'Arterial ulcers are caused by poor blood flow.',do:['Keep the leg warm','Keep the wound clean and dressed','Rest the leg when it hurts','Stop smoking'],dont:['Do not elevate leg above heart level','Do not use compression','Do not apply heat directly'],warn:['Sudden increase in pain','Foot turning pale, cold, or blue','New black tissue','Fever']},
+  surgical:{title:'Caring for your surgical wound',intro:'Keep the wound clean to heal properly and avoid infection.',do:['Keep the wound clean and dry','Change dressings as instructed','Eat well and stay hydrated'],dont:['Do not soak in a bath or pool','Do not scratch or pick at the wound'],warn:['Fever above 38°C','Increasing redness, pain, or swelling','Discharge or bad smell','Wound opening up']},
+  burn:{title:'Caring for your burn',intro:'Burns need gentle care to prevent infection and scarring.',do:['Keep the burn clean and covered','Take pain relief as prescribed','Drink plenty of fluids','Protect from sun'],dont:['Do not apply butter, oil, or toothpaste','Do not burst blisters'],warn:['Fever','Increasing pain','Discharge or bad smell','Burn getting deeper']},
+  rash:{title:'Caring for your skin rash',intro:'Most rashes settle with gentle skin care.',do:['Keep the area clean and dry','Use mild, fragrance-free soap','Apply cream exactly as prescribed','Wear loose cotton clothing'],dont:['Do not use scented soaps or lotions','Do not scratch or rub'],warn:['Spreading rapidly','Blisters or open sores forming','Fever','Difficulty breathing']},
+  other:{title:'Caring for your wound',intro:'Follow these steps to help your wound heal.',do:['Keep the wound clean and covered','Change dressings as instructed','Eat well and drink water'],dont:['Do not scratch or pick at the wound','Do not apply home remedies'],warn:['Fever','Increasing pain or redness','Discharge or bad smell','Wound getting bigger']},
 };
-async function shareHandout(patientName, woundType){
-  const c = HANDOUT_CONTENT[woundType] || HANDOUT_CONTENT.other;
-  const text = `${c.title}\n\n${c.intro}\n\nWHAT TO DO:\n${c.do.map(d=>'• '+d).join('\n')}\n\nWHAT TO AVOID:\n${c.dont.map(d=>'• '+d).join('\n')}\n\nWARNING SIGNS:\n${c.warn.map(d=>'• '+d).join('\n')}\n\n— OPSIN MEDICALS`;
+async function shareHandout(patientName, wt){
+  const c = HANDOUT_CONTENT[wt] || HANDOUT_CONTENT.other;
+  const text = `${c.title}\n\n${c.intro}\n\nWHAT TO DO:\n${c.do.map(d=>'• '+d).join('\n')}\n\nWHAT TO AVOID:\n${c.dont.map(d=>'• '+d).join('\n')}\n\nWARNING SIGNS:\n${c.warn.map(d=>'• '+d).join('\n')}\n\n— YULTO CARE`;
   if(state.native && window.yultoDB.shareText) await window.yultoDB.shareText({title:'Patient handout', text});
   else if(navigator.share) await navigator.share({title:'Patient handout', text});
-  else { await navigator.clipboard.writeText(text); toast('Copied to clipboard'); }
+  else { await navigator.clipboard.writeText(text); toast('Copied'); }
 }
 
-/* ═══════════ SETTINGS ═══════════ */
+/* Stats */
+async function renderStats(v){
+  const patients = await DB.all('patients');
+  const wounds = await DB.all('wounds');
+  const assessments = await DB.all('assessments');
+  const byType = {};
+  for(const w of wounds) byType[w.type || 'other'] = (byType[w.type || 'other'] || 0) + 1;
+  const healed = wounds.filter(w => w.status === 'healed');
+  let td = 0, cnt = 0;
+  for(const w of healed){
+    const ass = (await DB.all('assessments','woundId',w.id)).sort((a,b)=>a.createdAt-b.createdAt);
+    if(ass.length > 1){ td += (ass[ass.length-1].createdAt - ass[0].createdAt)/(24*60*60*1000); cnt++; }
+  }
+  const avg = cnt ? Math.round(td/cnt) : 0;
+  const labels = Object.keys(byType);
+  const colors = ['#2563eb','#10b981','#f59e0b','#dc2626','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+  v.innerHTML = `
+    <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('settings')">← Back</button></div>
+    <h1 class="title">Statistics</h1>
+    <p class="sub">Clinic overview</p>
+    <div class="stats" style="margin-bottom:16px">
+      <div class="stat"><div class="l">Patients</div><div class="v">${patients.length}</div></div>
+      <div class="stat"><div class="l">Wounds</div><div class="v">${wounds.length}</div></div>
+      <div class="stat"><div class="l">Healed</div><div class="v">${healed.length}</div></div>
+      <div class="stat"><div class="l">Avg healing</div><div class="v">${avg}d</div></div>
+      <div class="stat"><div class="l">Assessments</div><div class="v">${assessments.length}</div></div>
+      <div class="stat"><div class="l">Active</div><div class="v">${wounds.filter(w=>w.status==='active').length}</div></div>
+    </div>
+    ${labels.length ? `<div class="card"><b>Wounds by type</b>
+      <canvas id="pieChart" style="margin-top:10px;width:100%;height:180px;background:#f8fafc;border-radius:10px"></canvas>
+      <div class="pie-legend">${labels.map((t,i)=>`<span><span class="tdot" style="background:${colors[i%colors.length]}"></span>${t.replace(/_/g,' ')} (${byType[t]})</span>`).join('')}</div>
+    </div>` : ''}`;
+  if(labels.length) setTimeout(()=>drawPie(labels.map(t=>byType[t]), colors), 30);
+}
+function drawPie(values, colors){
+  const c = $('#pieChart'); if(!c) return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = c.clientWidth, h = 180;
+  c.width = w*dpr; c.height = h*dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr,dpr);
+  const total = values.reduce((a,b)=>a+b,0);
+  if(!total) return;
+  const cx = w/2, cy = h/2, r = Math.min(w,h)*0.4;
+  let a = -Math.PI/2;
+  values.forEach((val,i)=>{
+    const s = (val/total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx, cy, r, a, a+s); ctx.closePath();
+    ctx.fillStyle = colors[i%colors.length]; ctx.fill();
+    a += s;
+  });
+  ctx.beginPath(); ctx.arc(cx, cy, r*0.5, 0, Math.PI*2); ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.fillStyle = '#0f172a'; ctx.font = 'bold 20px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(String(total), cx, cy+7);
+}
+
+/* Audit viewer */
+async function renderAudit(v){
+  const rows = (await DB.all('audit')).sort((a,b)=>b.ts-a.ts).slice(0, 200);
+  v.innerHTML = `
+    <div class="row between" style="margin-bottom:8px"><button class="btn sec sm" onclick="go('settings')">← Back</button></div>
+    <h1 class="title">Audit trail</h1>
+    <p class="sub">${rows.length} most recent entries</p>
+    <div class="row" style="gap:8px;margin-bottom:14px">
+      <button class="btn sec" onclick="exportAudit()">📥 Export CSV</button>
+    </div>
+    <div class="card">
+      ${rows.length ? rows.map(r => {
+        const det = r.details && Object.keys(r.details).length ? Object.entries(r.details).slice(0,2).map(([k,val])=>k+': '+val).join(' · ') : '';
+        return `<div class="audit-row">
+          <div><div class="action">${esc(r.action.replace(/_/g,' '))}</div>${det?`<div class="when">${esc(det)}</div>`:''}</div>
+          <div class="when">${fmtDateTime(r.ts)}</div>
+        </div>`;
+      }).join('') : '<div class="empty"><p>No audit entries</p></div>'}
+    </div>`;
+}
+async function exportAudit(){
+  const rows = (await DB.all('audit')).sort((a,b)=>a.ts-b.ts);
+  const csv = 'timestamp,action,details\n'+rows.map(r=>`${new Date(r.ts).toISOString()},${r.action},"${JSON.stringify(r.details).replace(/"/g,'""')}"`).join('\n');
+  const filename = 'yulto-audit-'+new Date().toISOString().slice(0,10)+'.csv';
+  if(state.native && window.yultoDB.saveAndShareFile){
+    try{ await window.yultoDB.saveAndShareFile(btoa(unescape(encodeURIComponent(csv))), filename, 'text/csv'); toast('Audit saved'); return; }catch(e){}
+  }
+  downloadBlob(new Blob([csv],{type:'text/csv'}), filename);
+  toast('Audit exported');
+}
+
+/* Settings */
 async function renderSettings(v){
   const stats = {p:(await DB.all('patients')).length, w:(await DB.all('wounds')).length, i:(await DB.all('images')).length, a:(await DB.all('assessments')).length};
   const markerSize = (await DB.get('settings','marker_mm'))?.v || 20;
-  const clinician = state._clinicianName || (await DB.get('settings','clinician'))?.v || '';
-  const backups = (await DB.all('backups')).sort((a,b)=>b.ts-a.ts).slice(0,5);
+  const clinician = state._clinicianName || '';
   v.innerHTML = `
     <h1 class="title">Settings</h1>
-    <p class="sub">${state.native ? 'Native SQLite' : 'Browser storage'} · ${stats.p} patients · ${stats.i} photos</p>
+    <p class="sub">Local data · ${stats.p} patients · ${stats.i} photos</p>
 
     <div class="card">
-      <div class="row between">
-        <div><b>Statistics</b><div class="muted" style="font-size:12px">Clinic overview & charts</div></div>
-        <button class="btn sec sm" onclick="go('stats')">View</button>
-      </div>
+      <div class="row between"><div><b>Statistics</b><div class="muted" style="font-size:12px">Clinic overview</div></div>
+        <button class="btn sec sm" onclick="go('stats')">View</button></div>
+    </div>
+
+    <div class="card">
+      <div class="row between"><div><b>Audit trail</b><div class="muted" style="font-size:12px">Every action is logged</div></div>
+        <button class="btn sec sm" onclick="go('audit')">View</button></div>
     </div>
 
     <div class="card">
       <b>Automatic backups</b>
-      <div class="muted" style="font-size:12px;margin-top:4px">A backup file is offered for saving every 3 days. You'll also get a notification. Last: ${state.lastBackupAt ? timeAgo(state.lastBackupAt) : 'never'}.</div>
+      <div class="muted" style="font-size:12px;margin-top:4px">A backup file is offered every 3 days. Last: ${state.lastBackupAt ? timeAgo(state.lastBackupAt) : 'never'}.</div>
       <div style="height:10px"></div>
       <button class="btn ok" onclick="runBackup('manual-settings').then(()=>render())">Backup now</button>
-      ${backups.length ? `
-        <div class="muted" style="font-size:11px;font-weight:600;margin-top:14px">RECENT</div>
-        ${backups.map(b=>`<div style="font-size:12px;padding:6px 0;border-bottom:1px solid var(--line)">
-          <div class="row between"><span>${new Date(b.ts).toLocaleString()}</span><span class="muted">${b.reason}</span></div>
-        </div>`).join('')}` : ''}
+      <div class="muted" style="font-size:11px;margin-top:8px">Saved to: Documents/YULTO_CARE_BACKUPS</div>
     </div>
 
     <div class="card">
       <b>Clinician name</b>
       <input id="clinician" value="${esc(clinician)}" placeholder="Dr. Your Name">
-      <div class="muted" style="font-size:11px;margin-top:4px">Used in greeting on home screen</div>
       <div style="height:8px"></div>
       <button class="btn sec" onclick="saveClinician()">Save</button>
     </div>
 
     <div class="card">
-      <b>Yulto AI</b>
-      <div class="muted" style="font-size:12px;margin-top:4px">Your AI wound-care assistant, powered by Gemini.</div>
-      <div style="height:8px"></div>
-      <button class="btn yulto" onclick="openYulto()">🩺 Open Yulto</button>
-    </div>
-
-    <div class="card">
-      <b>Calibration marker (mm)</b>
+      <b>Calibration marker size (mm)</b>
       <input id="marker_mm" type="number" value="${markerSize}" step="1" min="5">
       <div style="height:8px"></div>
       <button class="btn sec" onclick="saveMarkerSize()">Save</button>
@@ -2290,33 +1943,20 @@ async function renderSettings(v){
       <button class="btn sec" onclick="changePin()">Update PIN</button>
     </div>
 
-    <div class="card">
-      <b>Voice test</b>
-      <div class="muted" style="font-size:12px;margin-top:4px">Verify text-to-speech works</div>
-      <div style="height:8px"></div>
-      <button class="btn sec" onclick="speak('OPSIN MEDICALS voice test. Everything is working correctly.')">🔊 Test voice</button>
-    </div>
-
-    ${state.native ? `
-    <div class="card"><b>Restore from backup file</b>
+    ${state.native ? `<div class="card"><b>Restore from backup file</b>
       <p class="muted" style="margin:4px 0 10px">Pick a JSON backup to restore everything.</p>
       <input id="restoreFile" type="file" accept=".json" onchange="restoreFromFile(this)">
     </div>` : ''}
 
     <div class="card">
       <b>About</b>
-      <p class="muted" style="margin:4px 0 0">OPSIN MEDICALS v7.0 · by Yulto Care<br>AI-powered clinical wound platform<br>Powered by Yulto (Gemini)</p>
+      <p class="muted" style="margin:4px 0 0">YULTO CARE v8.0 · Offline clinical wound platform · Focus square · Full healing forecast · All data on device.</p>
     </div>
     <button class="btn danger" onclick="wipeAll()" style="margin-top:8px">Delete all data</button>`;
 }
 async function saveMarkerSize(){ await DB.put('settings',{k:'marker_mm', v: parseFloat($('#marker_mm').value)||20}); toast('Saved'); }
-async function saveClinician(){ const name = $('#clinician').value.trim(); await DB.put('settings',{k:'clinician', v:name}); state._clinicianName = name; toast('Saved'); }
-async function changePin(){
-  const p = $('#newpin').value.trim();
-  if(p.length < 4){ toast('PIN must be ≥4 digits'); return; }
-  await DB.put('settings',{k:'pin', v:p});
-  $('#newpin').value = ''; toast('PIN updated');
-}
+async function saveClinician(){ const n = $('#clinician').value.trim(); await DB.put('settings',{k:'clinician', v:n}); state._clinicianName = n; toast('Saved'); }
+async function changePin(){ const p = $('#newpin').value.trim(); if(p.length < 4){ toast('PIN must be ≥4 digits'); return; } await DB.put('settings',{k:'pin', v:p}); $('#newpin').value = ''; toast('PIN updated'); }
 async function restoreFromFile(input){
   const f = input.files[0]; if(!f) return;
   if(!confirm('Restoring will REPLACE all current data. Continue?')) return;
@@ -2343,7 +1983,7 @@ async function wipeAll(){
   toast('All data deleted'); go('home');
 }
 
-/* ═══════════ MODAL ═══════════ */
+/* Modal */
 function openModal(html, noClose){
   $('#modalSheet').innerHTML = (noClose ? '' : `<button class="close" onclick="closeModal()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`) + html;
   $('#modal').classList.remove('hidden');
@@ -2359,11 +1999,10 @@ function viewImage(id){
 async function openPatient(id){ state.currentPatient = await DB.get('patients', id); go('patient'); }
 async function openWound(id){ state.currentWound = await DB.get('wounds', id); go('wound'); }
 
-/* ═══════════ BOOT ═══════════ */
+/* Boot */
 (async function boot(){
-  // Splash
-  setTimeout(()=>{ $('#splash').classList.add('hide'); }, 2600);
-  setTimeout(()=>{ $('#login').classList.remove('hidden'); }, 1200);
+  setTimeout(()=>$('#splash').classList.add('hide'), 2400);
+  setTimeout(()=>$('#login').classList.remove('hidden'), 1100);
 
   const readyStart = Date.now();
   while(!window.YULTO_READY && Date.now() - readyStart < 5000){
@@ -2371,12 +2010,9 @@ async function openWound(id){ state.currentWound = await DB.get('wounds', id); g
   }
   if(window.YULTO_READY && window.yultoDB){
     state.native = true;
-    try{ await window.yultoDB.openDB(); }
-    catch(e){ state.native = false; }
+    try{ await window.yultoDB.openDB(); }catch(e){ state.native = false; }
   }
-  if(!state.native){
-    try{ await openBrowserDB(); } catch(e){}
-  }
+  if(!state.native){ try{ await openBrowserDB(); }catch(e){} }
   try{
     const pinRec = await DB.get('settings','pin');
     if(!pinRec) await DB.put('settings',{k:'pin', v:'0000'});
