@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   OPSIN MEDICALS — native layer v7.0
+   YULTO CARE — native layer v8.0
    ═══════════════════════════════════════════════════════════════════ */
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
@@ -9,7 +9,7 @@ import { LocalNotifications } from '@capacitor/local-notifications';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
 const DB_NAME = 'yulto';
-const DB_VER = 7;
+const DB_VER = 8;
 const sqlite = new SQLiteConnection(CapacitorSQLite);
 let db = null;
 
@@ -66,38 +66,25 @@ async function openDB() {
     await db.open();
     await db.execute(SCHEMA);
     await migrate();
-  } catch (e) { console.error('[opsin] SQLite open failed:', e); throw e; }
+  } catch (e) { console.error('[yulto] SQLite open failed:', e); throw e; }
 }
 
 async function migrate() {
   const alters = [
-    'ALTER TABLE wounds ADD COLUMN stage TEXT',
-    'ALTER TABLE wounds ADD COLUMN template TEXT',
-    'ALTER TABLE wounds ADD COLUMN nextVisit INTEGER',
-    'ALTER TABLE wounds ADD COLUMN baselineArea REAL',
+    'ALTER TABLE wounds ADD COLUMN stage TEXT','ALTER TABLE wounds ADD COLUMN template TEXT',
+    'ALTER TABLE wounds ADD COLUMN nextVisit INTEGER','ALTER TABLE wounds ADD COLUMN baselineArea REAL',
     'ALTER TABLE wounds ADD COLUMN onsetDate INTEGER',
-    'ALTER TABLE assessments ADD COLUMN pain INTEGER',
-    'ALTER TABLE assessments ADD COLUMN exudate TEXT',
-    'ALTER TABLE assessments ADD COLUMN odor TEXT',
-    'ALTER TABLE assessments ADD COLUMN periwound TEXT',
-    'ALTER TABLE assessments ADD COLUMN underminingCm REAL',
-    'ALTER TABLE assessments ADD COLUMN tunnelingCm REAL',
-    'ALTER TABLE assessments ADD COLUMN tags TEXT',
-    'ALTER TABLE assessments ADD COLUMN clinician TEXT',
-    'ALTER TABLE assessments ADD COLUMN imageQuality REAL',
-    'ALTER TABLE assessments ADD COLUMN circularity REAL',
-    'ALTER TABLE assessments ADD COLUMN elongation REAL',
-    'ALTER TABLE assessments ADD COLUMN edgeIrregularity REAL',
-    'ALTER TABLE assessments ADD COLUMN notes TEXT',
-    'ALTER TABLE assessments ADD COLUMN wbpScore INTEGER',
-    'ALTER TABLE assessments ADD COLUMN designScore INTEGER',
-    'ALTER TABLE assessments ADD COLUMN biofilm INTEGER',
-    'ALTER TABLE assessments ADD COLUMN cultureResult TEXT',
-    'ALTER TABLE assessments ADD COLUMN cultureOrganism TEXT',
-    'ALTER TABLE assessments ADD COLUMN dressings TEXT',
-    'ALTER TABLE assessments ADD COLUMN compression TEXT',
-    'ALTER TABLE assessments ADD COLUMN offloading TEXT',
-    'ALTER TABLE assessments ADD COLUMN debridement TEXT',
+    'ALTER TABLE assessments ADD COLUMN pain INTEGER','ALTER TABLE assessments ADD COLUMN exudate TEXT',
+    'ALTER TABLE assessments ADD COLUMN odor TEXT','ALTER TABLE assessments ADD COLUMN periwound TEXT',
+    'ALTER TABLE assessments ADD COLUMN underminingCm REAL','ALTER TABLE assessments ADD COLUMN tunnelingCm REAL',
+    'ALTER TABLE assessments ADD COLUMN tags TEXT','ALTER TABLE assessments ADD COLUMN clinician TEXT',
+    'ALTER TABLE assessments ADD COLUMN imageQuality REAL','ALTER TABLE assessments ADD COLUMN circularity REAL',
+    'ALTER TABLE assessments ADD COLUMN elongation REAL','ALTER TABLE assessments ADD COLUMN edgeIrregularity REAL',
+    'ALTER TABLE assessments ADD COLUMN notes TEXT','ALTER TABLE assessments ADD COLUMN wbpScore INTEGER',
+    'ALTER TABLE assessments ADD COLUMN designScore INTEGER','ALTER TABLE assessments ADD COLUMN biofilm INTEGER',
+    'ALTER TABLE assessments ADD COLUMN cultureResult TEXT','ALTER TABLE assessments ADD COLUMN cultureOrganism TEXT',
+    'ALTER TABLE assessments ADD COLUMN dressings TEXT','ALTER TABLE assessments ADD COLUMN compression TEXT',
+    'ALTER TABLE assessments ADD COLUMN offloading TEXT','ALTER TABLE assessments ADD COLUMN debridement TEXT',
     'ALTER TABLE images ADD COLUMN annotation TEXT',
     'ALTER TABLE patients ADD COLUMN photoConsent INTEGER DEFAULT 0',
   ];
@@ -168,7 +155,7 @@ async function clearAll() {
 
 async function buildPayload() {
   return {
-    app: 'OPSIN MEDICALS', version: '7.0-native',
+    app: 'YULTO CARE', version: '8.0-native',
     exportedAt: new Date().toISOString(),
     patients: await all('patients'),
     wounds: await all('wounds'),
@@ -177,107 +164,106 @@ async function buildPayload() {
     audit: await all('audit'),
   };
 }
-
 async function exportBackup(reason) {
   const payload = await buildPayload();
   const json = JSON.stringify(payload);
   const stamp = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
-  const filename = `opsin-backup-${stamp}.json`;
+  const filename = `yulto-backup-${stamp}.json`;
   try {
     await Filesystem.writeFile({
-      path: `OPSIN_MEDICALS_BACKUPS/${filename}`,
-      data: json, directory: Directory.Documents,
-      encoding: Encoding.UTF8, recursive: true,
+      path: `YULTO_CARE_BACKUPS/${filename}`, data: json,
+      directory: Directory.Documents, encoding: Encoding.UTF8, recursive: true,
     });
   } catch (e) { console.warn('persist copy failed', e); }
   const cache = await Filesystem.writeFile({
-    path: filename, data: json,
-    directory: Directory.Cache, encoding: Encoding.UTF8,
+    path: filename, data: json, directory: Directory.Cache, encoding: Encoding.UTF8,
   });
   await put('backups', { id: stamp, filename, ts: Date.now(), reason: reason || 'manual', size: json.length });
   await put('settings', { k: 'last_backup_ts', v: Date.now() });
   return { filename, uri: cache.uri };
 }
-
 async function shareBackup(reason) {
   const r = await exportBackup(reason);
   await Share.share({
-    title: 'OPSIN MEDICALS backup',
-    text: `Backup file: ${r.filename}. Email it to yourself or save to Drive.`,
-    url: r.uri, dialogTitle: 'Send backup to…',
+    title: 'YULTO CARE backup',
+    text: `Backup saved to Documents/YULTO_CARE_BACKUPS. Send it now?`,
+    url: r.uri, dialogTitle: 'Send backup',
   });
   return r;
 }
-
-async function saveAndShareFile(base64Data, filename, mimeType) {
-  const result = await Filesystem.writeFile({
-    path: filename,
-    data: base64Data,
-    directory: Directory.Cache,
-    encoding: Encoding.UTF8,
-  });
-  await Share.share({
-    title: filename,
-    url: result.uri,
-    dialogTitle: 'Save or send file',
-  });
-  return result;
-}
-
 async function saveAndShareBinary(base64Data, filename, mimeType) {
   const result = await Filesystem.writeFile({
-    path: filename,
-    data: base64Data,
-    directory: Directory.Cache,
+    path: `YULTO_CARE/${filename}`, data: base64Data,
+    directory: Directory.Documents, recursive: true,
   });
-  await Share.share({
-    title: filename,
-    url: result.uri,
-    dialogTitle: 'Save or send file',
-  });
+  try {
+    await Share.share({
+      title: filename,
+      text: 'Saved to Documents/YULTO_CARE — you can also send it now.',
+      url: result.uri, dialogTitle: 'Saved — send or close',
+    });
+  } catch (e) {}
   return result;
 }
-
+async function saveAndShareFile(base64Data, filename, mimeType) {
+  return saveAndShareBinary(base64Data, filename, mimeType);
+}
 async function shareText({ title, text }) {
   await Share.share({ title, text, dialogTitle: title });
 }
 
+/* ─── Voice: three-tier fallback ─── */
 async function speak(text) {
+  // 1) Capacitor global plugin
   try {
-    await TextToSpeech.speak({
-      text: text,
-      lang: 'en-US',
-      rate: 0.95,
-      pitch: 1.0,
-      volume: 1.0,
-    });
-  } catch (e) {
-    console.warn('TTS failed', e);
+    const TTS = window.Capacitor?.Plugins?.TextToSpeech;
+    if (TTS?.speak) {
+      await TTS.speak({ text, lang: 'en-US', rate: 0.95, pitch: 1.0, volume: 1.0 });
+      return { ok: true, source: 'capacitor-global' };
+    }
+  } catch (e) { console.warn('TTS cap-global', e); }
+  // 2) Imported plugin
+  try {
+    if (TextToSpeech?.speak) {
+      await TextToSpeech.speak({ text, lang: 'en-US', rate: 0.95, pitch: 1.0, volume: 1.0 });
+      return { ok: true, source: 'import' };
+    }
+  } catch (e) { console.warn('TTS import', e); }
+  // 3) WebView browser voice
+  if ('speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95; u.pitch = 1; u.volume = 1;
+      const v = window.speechSynthesis.getVoices().find(x => x.lang.startsWith('en'));
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+      return { ok: true, source: 'webview' };
+    } catch (e) { console.warn('TTS webview', e); }
   }
+  return { ok: false, reason: 'no-tts' };
 }
 async function stopSpeaking() {
-  try { await TextToSpeech.stop(); } catch (e) {}
+  try { await window.Capacitor?.Plugins?.TextToSpeech?.stop?.(); } catch (e) {}
+  try { await TextToSpeech?.stop?.(); } catch (e) {}
+  try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
 }
 
 async function startListening() {
   try {
-    const perm = await SpeechRecognition.requestPermissions();
+    const R = window.Capacitor?.Plugins?.SpeechRecognition || SpeechRecognition;
+    const perm = await R.requestPermissions();
     if (perm.speechRecognition !== 'granted') return { error: 'permission denied' };
-    const result = await SpeechRecognition.start({
-      language: 'en-US',
-      maxResults: 1,
-      prompt: 'Speak now…',
-      partialResults: false,
-      popup: false,
+    const result = await R.start({
+      language: 'en-US', maxResults: 1, prompt: 'Speak now…',
+      partialResults: false, popup: false,
     });
     if (result?.matches?.length) return { text: result.matches[0] };
     return { text: '' };
-  } catch (e) {
-    return { error: e.message };
-  }
+  } catch (e) { return { error: e.message }; }
 }
 async function stopListening() {
-  try { await SpeechRecognition.stop(); } catch (e) {}
+  try { await window.Capacitor?.Plugins?.SpeechRecognition?.stop?.(); } catch (e) {}
 }
 
 async function scheduleBackupReminder() {
@@ -287,20 +273,13 @@ async function scheduleBackupReminder() {
     const threeDays = Date.now() + 3*24*60*60*1000;
     await LocalNotifications.schedule({
       notifications: [{
-        id: 1001,
-        title: 'OPSIN MEDICALS',
-        body: 'Time to back up your patient data. Tap to open.',
+        id: 1001, title: 'YULTO CARE',
+        body: 'Time to back up your patient data.',
         schedule: { at: new Date(threeDays), allowWhileIdle: true },
-        smallIcon: 'ic_stat_icon',
-        channelId: 'opsin-backup',
+        smallIcon: 'ic_stat_icon', channelId: 'yulto-backup',
       }],
     });
-    await LocalNotifications.createChannel({
-      id: 'opsin-backup',
-      name: 'Backup reminders',
-      importance: 3,
-    });
-  } catch (e) { console.warn('notification schedule failed', e); }
+  } catch (e) { console.warn('notif', e); }
 }
 
 async function importFromFileJson(jsonText) {
@@ -322,4 +301,4 @@ window.yultoDB = {
   scheduleBackupReminder,
 };
 window.YULTO_READY = true;
-console.log('[opsin] native layer v7.0 ready');
+console.log('[yulto] native layer v8.0 ready');
