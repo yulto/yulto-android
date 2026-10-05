@@ -30,7 +30,7 @@ jobs:
         run: npx cap add android
 
       - name: Copy custom AndroidManifest.xml
-        run: cp android/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+        run: cp manifest/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
 
       - name: Sync web assets
         run: npx cap sync android
