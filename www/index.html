@@ -247,6 +247,7 @@ nav button.active{color:var(--brand)}nav button svg{width:22px;height:22px}
 <script>
 /* YULTO CARE v8.0 */
 const YULTO_WORKER_URL = 'https://yulto-ai.kathikabalasooriya.workers.dev/';
+  const YULTO_MODEL = 'gemini-3.8-flash';
 const BACKUP_INTERVAL_MS = 3*24*60*60*1000;
 let state = {
   screen:'home', currentPatient:null, currentWound:null,
@@ -427,7 +428,7 @@ async function processYulto({ text, image }){
   yultoAdd('user', text, image); renderYultoFeed();
   yultoAdd('ai', 'Thinking…'); renderYultoFeed();
   $('#yultoStatus').textContent = 'Analyzing…';
-  const sys = `You are Yulto, a clinical wound care AI assistant for a doctor's clinic. Help with wound assessment, tissue identification, dressing selection, infection risk, and general wound care. Be concise and clinically practical. When given a photo, comment on tissue type, size, infection signs, dressings, and red flags. Use short paragraphs or bullets.`;
+  const sys = `You are Yulto, a clinical wound care AI assistant powered by Gemini 3.8 Flash. You work for a doctor's clinic. Help with wound assessment, tissue identification, dressing selection, infection risk, and general wound care. Be concise and clinically practical. When given a photo, comment on tissue type, size, infection signs, dressings, and red flags. Use short paragraphs or bullets.`;
   try{
     const res = await fetch(YULTO_WORKER_URL, {
       method:'POST', headers:{'Content-Type':'application/json'},
