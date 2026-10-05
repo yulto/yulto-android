@@ -252,8 +252,13 @@ async function stopSpeaking() {
 async function startListening() {
   try {
     const R = window.Capacitor?.Plugins?.SpeechRecognition || SpeechRecognition;
+    
+    // Explicitly request permission first
     const perm = await R.requestPermissions();
-    if (perm.speechRecognition !== 'granted') return { error: 'permission denied' };
+    if (perm.speechRecognition !== 'granted') {
+      return { error: 'Microphone permission denied. Please enable it in Android Settings > Apps > YULTO CARE > Permissions > Microphone.' };
+    }
+    
     const result = await R.start({
       language: 'en-US', maxResults: 1, prompt: 'Speak now…',
       partialResults: false, popup: false,
